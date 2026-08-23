@@ -1,1167 +1,137 @@
-HTML แกลเลอรี Dr. Stone — Science Galaxy
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dr. Stone • Science Galaxy</title>
-
 <style>
-/* =========================================================
-   RESET
-========================================================= */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:
-        "Segoe UI",
-        "Noto Sans Thai",
-        Tahoma,
-        sans-serif;
-
-    color:#eefcff;
-    min-height:100vh;
-    overflow-x:hidden;
-
-    background:
-        radial-gradient(circle at 15% 20%, rgba(0,255,255,.13), transparent 25%),
-        radial-gradient(circle at 85% 15%, rgba(90,80,255,.16), transparent 28%),
-        radial-gradient(circle at 50% 90%, rgba(0,255,170,.10), transparent 30%),
-        linear-gradient(135deg,#02040d 0%,#061126 45%,#02030a 100%);
-}
-
-
-/* =========================================================
-   BACKGROUND SPACE
-========================================================= */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-5;
-
-    background-image:
-        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1px),
-        radial-gradient(circle, rgba(0,240,255,.65) 1px, transparent 1px),
-        radial-gradient(circle, rgba(150,100,255,.5) 1px, transparent 1px);
-
-    background-size:
-        90px 90px,
-        150px 150px,
-        220px 220px;
-
-    background-position:
-        10px 20px,
-        40px 80px,
-        100px 30px;
-
-    animation:starsMove 30s linear infinite;
-}
-
-@keyframes starsMove{
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(90px);
-    }
-}
-
-
-/* =========================================================
-   GLOW ORBS
-========================================================= */
-.orb{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(35px);
-    pointer-events:none;
-    z-index:-3;
-    opacity:.45;
-}
-
-.orb1{
-    width:260px;
-    height:260px;
-    background:#00eaff;
-    top:10%;
-    left:-100px;
-    animation:orbFloat 9s ease-in-out infinite;
-}
-
-.orb2{
-    width:300px;
-    height:300px;
-    background:#754cff;
-    right:-120px;
-    top:40%;
-    animation:orbFloat 12s ease-in-out infinite reverse;
-}
-
-.orb3{
-    width:220px;
-    height:220px;
-    background:#00ffa6;
-    bottom:-80px;
-    left:35%;
-    animation:orbFloat 10s ease-in-out infinite;
-}
-
-@keyframes orbFloat{
-    0%,100%{
-        transform:translateY(0) scale(1);
-    }
-
-    50%{
-        transform:translateY(-40px) scale(1.08);
-    }
-}
-
-
-/* =========================================================
-   FLOATING SCIENCE EMOJIS
-========================================================= */
-.science{
-    position:fixed;
-    z-index:-1;
-    pointer-events:none;
-    user-select:none;
-    font-size:28px;
-    opacity:.22;
-    filter:drop-shadow(0 0 12px rgba(0,255,255,.8));
-
-    animation:
-        floatScience 9s ease-in-out infinite,
-        rotateScience 12s linear infinite;
-}
-
-.s1{left:5%;top:18%;animation-delay:0s;}
-.s2{left:14%;top:65%;animation-delay:2s;}
-.s3{left:28%;top:10%;animation-delay:4s;}
-.s4{left:43%;top:80%;animation-delay:1s;}
-.s5{left:58%;top:15%;animation-delay:3s;}
-.s6{left:73%;top:68%;animation-delay:5s;}
-.s7{left:88%;top:23%;animation-delay:2.5s;}
-.s8{left:93%;top:78%;animation-delay:4.5s;}
-.s9{left:35%;top:45%;animation-delay:1.5s;}
-.s10{left:65%;top:42%;animation-delay:3.5s;}
-
-@keyframes floatScience{
-    0%,100%{
-        transform:translateY(0) translateX(0);
-    }
-
-    50%{
-        transform:translateY(-30px) translateX(18px);
-    }
-}
-
-@keyframes rotateScience{
-    0%{
-        rotate:0deg;
-    }
-
-    100%{
-        rotate:360deg;
-    }
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-header{
-    text-align:center;
-    padding:80px 20px 45px;
-    position:relative;
-}
-
-.badge{
-    display:inline-block;
-    padding:9px 20px;
-    border:1px solid rgba(0,255,255,.5);
-    border-radius:999px;
-    background:rgba(0,255,255,.06);
-    color:#7ffcff;
-    font-size:14px;
-    letter-spacing:2px;
-    box-shadow:
-        0 0 20px rgba(0,255,255,.12),
-        inset 0 0 20px rgba(0,255,255,.04);
-    margin-bottom:20px;
-}
-
-header h1{
-    font-size:clamp(38px,6vw,76px);
-    font-weight:900;
-    letter-spacing:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #73f8ff,
-            #a68cff,
-            #ffffff
-        );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    text-shadow:
-        0 0 20px rgba(0,238,255,.35),
-        0 0 45px rgba(100,80,255,.2);
-
-    animation:titleGlow 4s ease-in-out infinite;
-}
-
-@keyframes titleGlow{
-    0%,100%{
-        filter:brightness(1);
-    }
-
-    50%{
-        filter:brightness(1.25);
-    }
-}
-
-header p{
-    margin-top:16px;
-    color:#a9c8d7;
-    font-size:18px;
-}
-
-.subtitle{
-    margin-top:9px;
-    color:#62f4ff;
-    font-size:14px;
-    letter-spacing:3px;
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-.gallery{
-    width:min(1500px,94%);
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:32px;
-
-    align-items:start;
-}
-
-
-/* =========================================================
-   CHARACTER CARD
-========================================================= */
-.card{
-    position:relative;
-
-    border-radius:28px;
-    padding:2px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,255,255,.8),
-            rgba(80,90,255,.45),
-            rgba(0,255,180,.65)
-        );
-
-    box-shadow:
-        0 0 25px rgba(0,238,255,.15),
-        0 25px 70px rgba(0,0,0,.45);
-
-    animation:cardFloat 6s ease-in-out infinite;
-
-    transition:
-        transform .5s ease,
-        box-shadow .5s ease;
-}
-
-.card:nth-child(2){
-    animation-delay:1.2s;
-}
-
-.card:nth-child(3){
-    animation-delay:2.4s;
-}
-
-@keyframes cardFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-13px);
-    }
-}
-
-.card:hover{
-    animation-play-state:paused;
-
-    transform:
-        translateY(-18px)
-        scale(1.025);
-
-    box-shadow:
-        0 0 35px rgba(0,255,255,.3),
-        0 30px 90px rgba(0,0,0,.6);
-}
-
-
-/* =========================================================
-   INNER CARD
-========================================================= */
-.card-inner{
-    height:100%;
-    border-radius:26px;
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            160deg,
-            rgba(8,22,42,.96),
-            rgba(3,8,20,.98)
-        );
-
-    backdrop-filter:blur(14px);
-}
-
-
-/* =========================================================
-   IMAGE FRAME
-========================================================= */
-.image-frame{
-    position:relative;
-    margin:16px;
-    height:390px;
-
-    border-radius:20px;
-    overflow:hidden;
-
-    border:1px solid rgba(116,248,255,.6);
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(0,255,255,.12),
-            rgba(2,5,15,.98)
-        );
-
-    box-shadow:
-        inset 0 0 35px rgba(0,255,255,.12),
-        0 0 25px rgba(0,255,255,.12);
-
-    animation:imageGlow 4s ease-in-out infinite;
-}
-
-@keyframes imageGlow{
-    0%,100%{
-        box-shadow:
-            inset 0 0 35px rgba(0,255,255,.10),
-            0 0 20px rgba(0,255,255,.10);
-    }
-
-    50%{
-        box-shadow:
-            inset 0 0 55px rgba(0,255,255,.22),
-            0 0 35px rgba(0,255,255,.20);
-    }
-}
-
-
-/* เส้นสแกนวิทยาศาสตร์ */
-.image-frame::after{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00ffff,
-            #ffffff,
-            #00ffff,
-            transparent
-        );
-
-    box-shadow:0 0 15px #00ffff;
-
-    opacity:.55;
-
-    animation:scan 5s linear infinite;
-    pointer-events:none;
-}
-
-@keyframes scan{
-    0%{
-        top:-5%;
-    }
-
-    100%{
-        top:105%;
-    }
-}
-
-
-/* PDF ที่ใช้เป็นภาพ */
-.image-frame iframe{
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-    background:#02050c;
-}
-
-
-/* =========================================================
-   CHARACTER INFO
-========================================================= */
-.content{
-    padding:8px 24px 28px;
-}
-
-.character-number{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-
-    padding:5px 12px;
-
-    border-radius:999px;
-
-    font-size:12px;
-    color:#74f8ff;
-
-    background:rgba(0,255,255,.07);
-    border:1px solid rgba(0,255,255,.25);
-
-    margin-bottom:12px;
-}
-
-.content h2{
-    font-size:27px;
-    line-height:1.25;
-
-    color:#ffffff;
-
-    text-shadow:
-        0 0 15px rgba(0,255,255,.25);
-
-    margin-bottom:16px;
-}
-
-.content h2 span{
-    color:#6df7ff;
-    font-size:17px;
-    display:block;
-    margin-top:5px;
-    font-weight:500;
-}
-
-.description{
-    color:#bfd1dc;
-    font-size:15px;
-    line-height:1.9;
-}
-
-.description strong{
-    color:#6ff7ff;
-}
-
-
-/* =========================================================
-   INFO BOX
-========================================================= */
-.info-box{
-    margin-top:18px;
-    padding:16px;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,255,255,.06),
-            rgba(100,80,255,.07)
-        );
-
-    border:1px solid rgba(120,220,255,.14);
-
-    box-shadow:
-        inset 0 0 20px rgba(0,255,255,.025);
-}
-
-.info-box p{
-    margin:7px 0;
-    color:#c6dbe4;
-    font-size:14px;
-    line-height:1.8;
-}
-
-.info-box b{
-    color:#8cfbff;
-}
-
-
-/* =========================================================
-   RELATIONSHIP
-========================================================= */
-.relationship{
-    position:relative;
-
-    grid-column:1 / -1;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    margin:-5px 0;
-
-    z-index:5;
-}
-
-.relationship-line{
-    position:absolute;
-    width:75%;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00ffff,
-            #8e6cff,
-            #00ffff,
-            transparent
-        );
-
-    box-shadow:
-        0 0 15px rgba(0,255,255,.7);
-
-    animation:linePulse 3s ease-in-out infinite;
-}
-
-@keyframes linePulse{
-    0%,100%{
-        opacity:.45;
-    }
-
-    50%{
-        opacity:1;
-    }
-}
-
-.relationship-label{
-    position:relative;
-
-    padding:11px 24px;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(4,15,30,.98),
-            rgba(12,20,50,.98)
-        );
-
-    border:1px solid rgba(0,255,255,.6);
-
-    color:#ecffff;
-
-    font-size:15px;
-    font-weight:700;
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.25);
-
-    backdrop-filter:blur(10px);
-
-    white-space:nowrap;
-}
-
-.relationship-label .emoji{
-    font-size:20px;
-    margin-right:6px;
-}
-
-.heart{
-    color:#ff5f9e;
-    margin-left:8px;
-    filter:drop-shadow(0 0 8px #ff3d88);
-    animation:heartBeat 1.3s infinite;
-}
-
-@keyframes heartBeat{
-    0%,100%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.25);
-    }
-}
-
-
-/* =========================================================
-   SCIENCE DIVIDER
-========================================================= */
-.science-divider{
-    width:min(900px,90%);
-    margin:75px auto 55px;
-
-    display:flex;
-    align-items:center;
-    gap:15px;
-
-    color:#72f8ff;
-    opacity:.7;
-}
-
-.science-divider::before,
-.science-divider::after{
-    content:"";
-    flex:1;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(0,255,255,.7)
-        );
-}
-
-.science-divider::after{
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,255,255,.7),
-            transparent
-        );
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer{
-    margin-top:60px;
-    padding:50px 20px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(0,255,255,.05)
-        );
-
-    border-top:1px solid rgba(0,255,255,.12);
-}
-
-footer .logo{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-footer p{
-    color:#7f9aa7;
-    margin:6px;
-    font-size:14px;
-}
-
-footer .copyright{
-    color:#63f4ff;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media(max-width:1050px){
-
-    .gallery{
-        grid-template-columns:1fr;
-        max-width:760px;
-    }
-
-    .relationship{
-        grid-column:auto;
-        margin:5px 0;
-    }
-
-    .relationship-line{
-        width:3px;
-        height:75px;
-        left:50%;
-        top:-40px;
-
-        background:
-            linear-gradient(
-                180deg,
-                transparent,
-                #00ffff,
-                #8e6cff,
-                transparent
-            );
-    }
-
-    .relationship-label{
-        white-space:normal;
-        text-align:center;
-    }
-
-    .image-frame{
-        height:500px;
-    }
-}
-
-
-@media(max-width:600px){
-
-    header{
-        padding:55px 18px 30px;
-    }
-
-    header h1{
-        font-size:38px;
-    }
-
-    header p{
-        font-size:15px;
-    }
-
-    .gallery{
-        width:94%;
-        gap:22px;
-    }
-
-    .card{
-        border-radius:22px;
-    }
-
-    .card-inner{
-        border-radius:20px;
-    }
-
-    .image-frame{
-        height:420px;
-        margin:12px;
-        border-radius:17px;
-    }
-
-    .content{
-        padding:8px 18px 24px;
-    }
-
-    .content h2{
-        font-size:23px;
-    }
-
-    .description{
-        font-size:14px;
-        line-height:1.85;
-    }
-
-    .relationship-label{
-        font-size:13px;
-        padding:10px 16px;
-    }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI","Noto Sans Thai",Tahoma,sans-serif;color:#eefcff;min-height:100vh;overflow-x:hidden;background:radial-gradient(circle at 15% 20%,rgba(0,255,255,.13),transparent 25%),radial-gradient(circle at 85% 15%,rgba(90,80,255,.16),transparent 28%),radial-gradient(circle at 50% 90%,rgba(0,255,170,.10),transparent 30%),linear-gradient(135deg,#02040d 0%,#061126 45%,#02030a 100%)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-5;background-image:radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1px),radial-gradient(circle,rgba(0,240,255,.65) 1px,transparent 1px),radial-gradient(circle,rgba(150,100,255,.5) 1px,transparent 1px);background-size:90px 90px,150px 150px,220px 220px;background-position:10px 20px,40px 80px,100px 30px;animation:starsMove 30s linear infinite}
+@keyframes starsMove{from{transform:translateY(0)}to{transform:translateY(90px)}}
+
+/* Science atmosphere */
+.science-grid{position:fixed;inset:0;z-index:-4;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(0,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.12) 1px,transparent 1px);background-size:70px 70px;mask-image:radial-gradient(circle at center,#000 0%,transparent 75%);-webkit-mask-image:radial-gradient(circle at center,#000 0%,transparent 75%)}
+.tech-ring{position:fixed;border:1px solid rgba(0,255,255,.14);border-radius:50%;pointer-events:none;z-index:-3}
+.ring1{width:500px;height:500px;left:-230px;top:18%;box-shadow:0 0 35px rgba(0,255,255,.06),inset 0 0 35px rgba(0,255,255,.04);animation:spin 28s linear infinite}
+.ring2{width:680px;height:680px;right:-350px;bottom:-130px;border-color:rgba(130,100,255,.16);animation:spin 40s linear infinite reverse}
+.ring3{width:260px;height:260px;right:8%;top:12%;border-style:dashed;border-color:rgba(0,255,180,.16);animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.orb{position:fixed;border-radius:50%;filter:blur(35px);pointer-events:none;z-index:-3;opacity:.45}
+.orb1{width:260px;height:260px;background:#00eaff;top:10%;left:-100px;animation:orbFloat 9s ease-in-out infinite}
+.orb2{width:300px;height:300px;background:#754cff;right:-120px;top:40%;animation:orbFloat 12s ease-in-out infinite reverse}
+.orb3{width:220px;height:220px;background:#00ffa6;bottom:-80px;left:35%;animation:orbFloat 10s ease-in-out infinite}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.08)}}
+
+.science{position:fixed;z-index:-1;pointer-events:none;user-select:none;font-size:28px;opacity:.22;filter:drop-shadow(0 0 12px rgba(0,255,255,.8));animation:floatScience 9s ease-in-out infinite,rotateScience 12s linear infinite}
+.s1{left:5%;top:18%}.s2{left:14%;top:65%;animation-delay:2s}.s3{left:28%;top:10%;animation-delay:4s}.s4{left:43%;top:80%;animation-delay:1s}.s5{left:58%;top:15%;animation-delay:3s}.s6{left:73%;top:68%;animation-delay:5s}.s7{left:88%;top:23%;animation-delay:2.5s}.s8{left:93%;top:78%;animation-delay:4.5s}.s9{left:35%;top:45%;animation-delay:1.5s}.s10{left:65%;top:42%;animation-delay:3.5s}
+@keyframes floatScience{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-30px) translateX(18px)}}
+@keyframes rotateScience{0%{rotate:0deg}100%{rotate:360deg}}
+
+header{text-align:center;padding:80px 20px 45px;position:relative}
+header::before{content:"⚛  H₂O  •  CO₂  •  DNA  •  E=mc²  •  π  •  NaCl  •  ATP  •  Δ";display:block;color:rgba(104,249,255,.28);font-family:monospace;font-size:12px;letter-spacing:3px;margin-bottom:18px;animation:dataFlow 10s linear infinite}
+@keyframes dataFlow{0%{transform:translateX(-10px);opacity:.25}50%{opacity:.65}100%{transform:translateX(10px);opacity:.25}}
+.badge{display:inline-block;padding:9px 20px;border:1px solid rgba(0,255,255,.5);border-radius:999px;background:rgba(0,255,255,.06);color:#7ffcff;font-size:14px;letter-spacing:2px;box-shadow:0 0 20px rgba(0,255,255,.12),inset 0 0 20px rgba(0,255,255,.04);margin-bottom:20px}
+header h1{font-size:clamp(38px,6vw,76px);font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#fff,#73f8ff,#a68cff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 20px rgba(0,238,255,.35),0 0 45px rgba(100,80,255,.2);animation:titleGlow 4s ease-in-out infinite}
+@keyframes titleGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+header p{margin-top:16px;color:#a9c8d7;font-size:18px}.subtitle{margin-top:9px;color:#62f4ff;font-size:14px;letter-spacing:3px}
+
+.gallery{width:min(1500px,94%);margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start}
+.card{position:relative;border-radius:28px;padding:2px;background:linear-gradient(135deg,rgba(0,255,255,.8),rgba(80,90,255,.45),rgba(0,255,180,.65));box-shadow:0 0 25px rgba(0,238,255,.15),0 25px 70px rgba(0,0,0,.45);animation:cardFloat 6s ease-in-out infinite;transition:transform .5s ease,box-shadow .5s ease}
+.card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(0,255,255,.10);border-radius:22px;pointer-events:none;z-index:4}
+.card:nth-child(2){animation-delay:1.2s}.card:nth-child(4){animation-delay:2.4s}.card:nth-child(6){animation-delay:3.6s}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.card:hover{animation-play-state:paused;transform:translateY(-18px) scale(1.025);box-shadow:0 0 35px rgba(0,255,255,.3),0 30px 90px rgba(0,0,0,.6)}
+.card-inner{height:100%;border-radius:26px;overflow:hidden;background:linear-gradient(160deg,rgba(8,22,42,.96),rgba(3,8,20,.98));backdrop-filter:blur(14px)}
+
+.image-frame{position:relative;margin:16px;height:390px;border-radius:20px;overflow:hidden;border:1px solid rgba(116,248,255,.6);background:radial-gradient(circle at center,rgba(0,255,255,.12),rgba(2,5,15,.98));box-shadow:inset 0 0 35px rgba(0,255,255,.12),0 0 25px rgba(0,255,255,.12);animation:imageGlow 4s ease-in-out infinite}
+.image-frame::before{content:"SCIENTIFIC ARCHIVE // IMAGE DATA";position:absolute;top:10px;left:12px;z-index:3;padding:4px 8px;border:1px solid rgba(0,255,255,.35);background:rgba(0,10,20,.55);color:rgba(150,255,255,.85);font:10px monospace;letter-spacing:1px;border-radius:5px;pointer-events:none}
+.image-frame::after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00ffff,#fff,#00ffff,transparent);box-shadow:0 0 15px #00ffff;opacity:.55;animation:scan 5s linear infinite;pointer-events:none;z-index:3}
+@keyframes imageGlow{0%,100%{box-shadow:inset 0 0 35px rgba(0,255,255,.10),0 0 20px rgba(0,255,255,.10)}50%{box-shadow:inset 0 0 55px rgba(0,255,255,.22),0 0 35px rgba(0,255,255,.20)}}
+@keyframes scan{0%{top:-5%}100%{top:105%}}
+.character-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center;background:#02050c;transition:transform .7s ease,filter .7s ease}
+.card:hover .character-image{transform:scale(1.045);filter:saturate(1.08) contrast(1.03)}
+
+.content{padding:8px 24px 28px}.character-number{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;font-size:12px;color:#74f8ff;background:rgba(0,255,255,.07);border:1px solid rgba(0,255,255,.25);margin-bottom:12px}.content h2{font-size:27px;line-height:1.25;color:#fff;text-shadow:0 0 15px rgba(0,255,255,.25);margin-bottom:16px}.content h2 span{color:#6df7ff;font-size:17px;display:block;margin-top:5px;font-weight:500}.description{color:#bfd1dc;font-size:15px;line-height:1.9}.description strong{color:#6ff7ff}
+.info-box{margin-top:18px;padding:16px;border-radius:16px;background:linear-gradient(135deg,rgba(0,255,255,.06),rgba(100,80,255,.07));border:1px solid rgba(120,220,255,.14);box-shadow:inset 0 0 20px rgba(0,255,255,.025)}.info-box p{margin:7px 0;color:#c6dbe4;font-size:14px;line-height:1.8}.info-box b{color:#8cfbff}
+
+.relationship{position:relative;grid-column:1/-1;display:flex;justify-content:center;align-items:center;margin:-5px 0;z-index:5}.relationship-line{position:absolute;width:75%;height:2px;background:linear-gradient(90deg,transparent,#00ffff,#8e6cff,#00ffff,transparent);box-shadow:0 0 15px rgba(0,255,255,.7);animation:linePulse 3s ease-in-out infinite}@keyframes linePulse{0%,100%{opacity:.45}50%{opacity:1}}.relationship-label{position:relative;padding:11px 24px;border-radius:999px;background:linear-gradient(135deg,rgba(4,15,30,.98),rgba(12,20,50,.98));border:1px solid rgba(0,255,255,.6);color:#ecffff;font-size:15px;font-weight:700;box-shadow:0 0 20px rgba(0,255,255,.25);backdrop-filter:blur(10px);white-space:nowrap}.relationship-label .emoji{font-size:20px;margin-right:6px}.heart{color:#ff5f9e;margin-left:8px;filter:drop-shadow(0 0 8px #ff3d88);animation:heartBeat 1.3s infinite}@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+.science-divider{width:min(900px,90%);margin:75px auto 55px;display:flex;align-items:center;gap:15px;color:#72f8ff;opacity:.7}.science-divider::before,.science-divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,255,.7))}.science-divider::after{background:linear-gradient(90deg,rgba(0,255,255,.7),transparent)}
+footer{margin-top:60px;padding:50px 20px;text-align:center;background:linear-gradient(180deg,transparent,rgba(0,255,255,.05));border-top:1px solid rgba(0,255,255,.12)}footer .logo{font-size:30px;margin-bottom:10px}footer p{color:#7f9aa7;margin:6px;font-size:14px}footer .copyright{color:#63f4ff}
+
+@media(max-width:1050px){.gallery{grid-template-columns:1fr;max-width:760px}.relationship{grid-column:auto;margin:5px 0}.relationship-line{width:3px;height:75px;left:50%;top:-40px;background:linear-gradient(180deg,transparent,#00ffff,#8e6cff,transparent)}.relationship-label{white-space:normal;text-align:center}.image-frame{height:500px}}
+@media(max-width:600px){header{padding:55px 18px 30px}header h1{font-size:38px}header p{font-size:15px}.gallery{width:94%;gap:22px}.card{border-radius:22px}.card-inner{border-radius:20px}.image-frame{height:420px;margin:12px;border-radius:17px}.content{padding:8px 18px 24px}.content h2{font-size:23px}.description{font-size:14px;line-height:1.85}.relationship-label{font-size:13px;padding:10px 16px}header::before{font-size:9px;letter-spacing:1px}}
 </style>
 </head>
-
-
 <body>
-
-<!-- =========================================================
-     FLOATING SCIENCE EMOJIS
-========================================================= -->
-
-<div class="science s1">⚗️</div>
-<div class="science s2">🧪</div>
-<div class="science s3">🔬</div>
-<div class="science s4">🧬</div>
-<div class="science s5">⚛️</div>
-<div class="science s6">🧫</div>
-<div class="science s7">🧠</div>
-<div class="science s8">💡</div>
-<div class="science s9">⚙️</div>
-<div class="science s10">🚀</div>
-
-
-<!-- GLOW ORBS -->
-
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<div class="science-grid"></div>
+<div class="tech-ring ring1"></div><div class="tech-ring ring2"></div><div class="tech-ring ring3"></div>
+<div class="science s1">⚗️</div><div class="science s2">🧪</div><div class="science s3">🔬</div><div class="science s4">🧬</div><div class="science s5">⚛️</div><div class="science s6">🧫</div><div class="science s7">🧠</div><div class="science s8">💡</div><div class="science s9">⚙️</div><div class="science s10">🚀</div>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 
 <header>
-
-    <div class="badge">
-        ⚛️ SCIENCE • KNOWLEDGE • DISCOVERY ⚛️
-    </div>
-
-    <h1>
-        🧪 DR. STONE
-    </h1>
-
-    <p>
-        แกลเลอรีตัวละครแห่งโลกวิทยาศาสตร์
-    </p>
-
-    <div class="subtitle">
-        SCIENCE IS THE POWER OF HUMANITY
-    </div>
-
+    <div class="badge">⚛️ SCIENCE • KNOWLEDGE • DISCOVERY ⚛️</div>
+    <h1>🧪 DR. STONE</h1>
+    <p>แกลเลอรีตัวละครแห่งโลกวิทยาศาสตร์</p>
+    <div class="subtitle">SCIENCE IS THE POWER OF HUMANITY</div>
 </header>
 
-
-<!-- =========================================================
-     GALLERY
-========================================================= -->
-
 <section class="gallery">
-
-
-    <!-- =====================================================
-         CHARACTER 1
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
-
-            <div class="image-frame">
-
-                <!-- ไฟล์ที่ 1 -->
-                <iframe
-                    src="ishigami%20senku%20ii.pdf"
-                    title="อิชิกามิ เซ็นคู">
-                </iframe>
-
+    <article class="card"><div class="card-inner">
+        <div class="image-frame"><img class="character-image" src="1000012039.jpg" alt="อิชิกามิ เซ็นคู"></div>
+        <div class="content">
+            <div class="character-number">🧪 CHARACTER 01</div>
+            <h2>อิชิกามิ เซ็นคู<span>Ishigami Senku</span></h2>
+            <p class="description"><strong>อิชิกามิ เซ็นคู (Ishigami Senku)</strong> เป็นตัวเอกหลักจากมังงะและอนิเมะเรื่อง <strong>Dr. Stone</strong> เขาเป็นเด็กหนุ่มอัจฉริยะผู้มีความรู้รอบด้านทางวิทยาศาสตร์ ที่ฟื้นคืนชีพขึ้นมาในโลกยุคหินหลังจากมนุษย์ทั่วโลกกลายเป็นหินนานกว่า 3,700 ปี และตั้งเป้าหมายสร้างอารยธรรมขึ้นมาใหม่ด้วยพลังของวิทยาศาสตร์</p>
+            <div class="info-box">
+                <p>🧠 <b>ความสามารถ:</b> เชี่ยวชาญเคมี ฟิสิกส์ ชีววิทยา คณิตศาสตร์ และวิศวกรรม</p>
+                <p>🎯 <b>เป้าหมาย:</b> ก่อตั้ง "อาณาจักรวิทยาศาสตร์" เพื่อช่วยเหลือผู้คนและคืนความเจริญให้อารยธรรมมนุษย์</p>
+                <p>🧪 <b>บุคลิก:</b> มั่นใจในตัวเองสูง มีเหตุผล ฉลาดเป็นกรด และยึดมั่นในความจริงตามหลักวิทยาศาสตร์</p>
+                <p>⚠️ <b>จุดอ่อน:</b> มีพละกำลังและการต่อสู้ด้อยกว่าคนอื่นอย่างเห็นได้ชัด</p>
             </div>
-
-
-            <div class="content">
-
-                <div class="character-number">
-                    🧪 CHARACTER 01
-                </div>
-
-                <h2>
-                    อิชิกามิ เซ็นคู
-                    <span>
-                        Ishigami Senku
-                    </span>
-                </h2>
-
-
-                <p class="description">
-
-                    <strong>อิชิกามิ เซ็นคู (Ishigami Senku)</strong>
-                    เป็นตัวเอกหลักจากมังงะและอนิเมะเรื่อง
-                    <strong>Dr. Stone</strong>
-                    เขาเป็นเด็กหนุ่มอัจฉริยะผู้มีความรู้รอบด้านทางวิทยาศาสตร์
-                    ที่ฟื้นคืนชีพขึ้นมาในโลกยุคหินหลังจากมนุษย์ทั่วโลกกลายเป็นหินนานกว่า
-                    3,700 ปี และตั้งเป้าหมายสร้างอารยธรรมขึ้นมาใหม่ด้วยพลังของวิทยาศาสตร์
-
-                </p>
-
-
-                <div class="info-box">
-
-                    <p>
-                        🧠 <b>ความสามารถ:</b>
-                        เชี่ยวชาญเคมี ฟิสิกส์ ชีววิทยา คณิตศาสตร์ และวิศวกรรม
-                    </p>
-
-                    <p>
-                        🎯 <b>เป้าหมาย:</b>
-                        ก่อตั้ง "อาณาจักรวิทยาศาสตร์" เพื่อช่วยเหลือผู้คนและคืนความเจริญให้อารยธรรมมนุษย์
-                    </p>
-
-                    <p>
-                        🧪 <b>บุคลิก:</b>
-                        มั่นใจในตัวเองสูง มีเหตุผล ฉลาดเป็นกรด และยึดมั่นในความจริงตามหลักวิทยาศาสตร์
-                    </p>
-
-                    <p>
-                        ⚠️ <b>จุดอ่อน:</b>
-                        มีพละกำลังและการต่อสู้ด้อยกว่าคนอื่นอย่างเห็นได้ชัด
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
+    </div></article>
 
-    </article>
+    <div class="relationship"><div class="relationship-line"></div><div class="relationship-label">🧑‍🏫 ศิษย์อาจารย์ <span class="heart">♥</span></div></div>
 
-
-    <!-- =====================================================
-         RELATIONSHIP 1
-    ====================================================== -->
-
-    <div class="relationship">
-
-        <div class="relationship-line"></div>
-
-        <div class="relationship-label">
-
-            🧑‍🏫
-            ศิษย์อาจารย์
-            <span class="heart">♥</span>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CHARACTER 2
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
-
-            <div class="image-frame">
-
-                <!-- ไฟล์ที่ 2 -->
-                <iframe
-                    src="xeno%20ii.pdf"
-                    title="ดร. เซโน ฮูสตัน วิงฟิลด์">
-                </iframe>
-
+    <article class="card"><div class="card-inner">
+        <div class="image-frame"><img class="character-image" src="1000012040.jpg" alt="ดร. เซโน ฮูสตัน วิงฟิลด์"></div>
+        <div class="content">
+            <div class="character-number">⚛️ CHARACTER 02</div>
+            <h2>ดร. เซโน ฮูสตัน วิงฟิลด์<span>Dr. Xeno Houston Wingfield</span></h2>
+            <p class="description"><strong>ดร. เซโน ฮูสตัน วิงฟิลด์ (Dr. Xeno Houston Wingfield)</strong> คืออัจฉริยะทางวิทยาศาสตร์สายดาร์ก และเป็นคู่ปรับคนสำคัญของเซ็นคูใน <strong>Dr. Stone</strong> เขาคืออดีตนักวิทยาศาสตร์มืออาชีพของ NASA และเป็นผู้นำของกลุ่มคนในฝั่งอเมริกาหลังจากตื่นขึ้นจากการเป็นหิน</p>
+            <div class="info-box">
+                <p>✨ <b>คำพูดติดปาก:</b> มักใช้คำว่า "Elegant" (สง่างาม) เพื่อชื่นชมสิ่งที่มีประสิทธิภาพและสมบูรณ์แบบ</p>
+                <p>🔬 <b>ความสามารถ:</b> เชี่ยวชาญวิทยาศาสตร์ระดับสูง โดยเฉพาะฟิสิกส์ วิศวกรรมศาสตร์ และการสร้างอาวุธสงคราม</p>
+                <p>👑 <b>แนวคิดและเป้าหมาย:</b> เชื่อว่า "วิทยาศาสตร์คือพลัง" และคนฉลาดควรปกครองคนโง่ เขาตั้งใจจะเป็นเผด็จการผู้ปกครองโลกยุคหิน</p>
+                <p>🔫 <b>อาวุธในครอบครอง:</b> ต่างจากเซ็นคูที่เน้นสร้างของใช้ เซโน่สร้างปืนกล ไรเฟิลซุ่มยิง และเครื่องบินรบขึ้นมาครอบครอง</p>
+                <p>🤝 <b>ความสัมพันธ์:</b> เป็นเพื่อนสมัยเด็กและคู่หูที่ไว้ใจที่สุดของสแตนลีย์ สไนเดอร์ ทหารฝีมือฉกาจ</p>
             </div>
-
-
-            <div class="content">
-
-                <div class="character-number">
-                    ⚛️ CHARACTER 02
-                </div>
-
-                <h2>
-                    ดร. เซโน ฮูสตัน วิงฟิลด์
-                    <span>
-                        Dr. Xeno Houston Wingfield
-                    </span>
-                </h2>
-
-
-                <p class="description">
-
-                    <strong>ดร. เซโน ฮูสตัน วิงฟิลด์ (Dr. Xeno Houston Wingfield)</strong>
-                    คืออัจฉริยะทางวิทยาศาสตร์สายดาร์ก และเป็นคู่ปรับคนสำคัญของเซ็นคูใน
-                    <strong>Dr. Stone</strong>
-                    เขาคืออดีตนักวิทยาศาสตร์มืออาชีพของ NASA และเป็นผู้นำของกลุ่มคนในฝั่งอเมริกาหลังจากตื่นขึ้นจากการเป็น
-
-                </p>
-
-
-                <div class="info-box">
-
-                    <p>
-                        ✨ <b>คำพูดติดปาก:</b>
-                        มักใช้คำว่า "Elegant" (สง่างาม)
-                        เพื่อชื่นชมสิ่งที่มีประสิทธิภาพและสมบูรณ์แบบ
-                    </p>
-
-                    <p>
-                        🔬 <b>ความสามารถ:</b>
-                        เชี่ยวชาญวิทยาศาสตร์ระดับสูง โดยเฉพาะฟิสิกส์ วิศวกรรมศาสตร์ และการสร้างอาวุธสงคราม
-                    </p>
-
-                    <p>
-                        👑 <b>แนวคิดและเป้าหมาย:</b>
-                        เชื่อว่า "วิทยาศาสตร์คือพลัง" และคนฉลาดควรปกครองคนโง่
-                        เขาตั้งใจจะเป็นเผด็จการผู้ปกครองโลกยุคหิน
-                    </p>
-
-                    <p>
-                        🔫 <b>อาวุธในครอบครอง:</b>
-                        ต่างจากเซ็นคูที่เน้นสร้างของใช้ เซโน่สร้างปืนกล
-                        ไรเฟิลซุ่มยิง และเครื่องบินรบขึ้นมาครอบครอง
-                    </p>
-
-                    <p>
-                        🤝 <b>ความสัมพันธ์:</b>
-                        เป็นเพื่อนสมัยเด็กและคู่หูที่ไว้ใจที่สุดของ
-                        สแตนลีย์ สไนเดอร์ ทหารฝีมือฉกาจ
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
+    </div></article>
 
-    </article>
+    <div class="relationship"><div class="relationship-line"></div><div class="relationship-label">🤝 คู่หูที่เชื่อใจที่สุด <span class="heart">♥</span></div></div>
 
-
-    <!-- =====================================================
-         RELATIONSHIP 2
-    ====================================================== -->
-
-    <div class="relationship">
-
-        <div class="relationship-line"></div>
-
-        <div class="relationship-label">
-
-            🤝
-            คู่หูที่เชื่อใจที่สุด
-            <span class="heart">♥</span>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CHARACTER 3
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
-
-            <div class="image-frame">
-
-                <!-- ไฟล์ที่ 3 -->
-                <iframe
-                    src="stanly%20ii.pdf"
-                    title="สแตนลีย์ สไนเดอร์">
-                </iframe>
-
+    <article class="card"><div class="card-inner">
+        <div class="image-frame"><img class="character-image" src="1000012041.jpg" alt="สแตนลีย์ สไนเดอร์"></div>
+        <div class="content">
+            <div class="character-number">🎯 CHARACTER 03</div>
+            <h2>สแตนลีย์ สไนเดอร์<span>Stanley Snyder</span></h2>
+            <p class="description"><strong>สแตนลีย์ สไนเดอร์ (Stanley Snyder)</strong> คือทหารรับจ้างฝีมือฉกาจระดับพระกาฬ และเป็น <strong>"มือขวา"</strong> ที่ซื่อสัตย์ที่สุดของ ดร. เซโน ใน <strong>Dr. Stone</strong> เขาทำหน้าที่เป็นผู้นำกองกำลังทหารของฝั่งอเมริกา และเป็นหนึ่งในตัวร้ายที่อันตรายที่สุดในเรื่องด้วยทักษะการรบและการใช้อาวุธที่ไร้เทียมทาน</p>
+            <div class="info-box">
+                <p>🚬 <b>เอกลักษณ์:</b> มักจะคาบบุหรี่อยู่ในปากตลอดเวลา และมีรูปร่างหน้าตาสะสวยจนบางครั้งคนเข้าใจผิดว่าเป็นผู้หญิง</p>
+                <p>🎯 <b>ทักษะการต่อสู้:</b> เป็นนักแม่นปืนขั้นเทพ สามารถยิงเป้าหมายระยะไกลได้อย่างแม่นยำ และเชี่ยวชาญการขับเครื่องบินรบ</p>
+                <p>🥶 <b>บุคลิก:</b> เงียบขรึม เลือดเย็น มีไหวพริบและสัญชาตญาณการต่อสู้ที่เฉียบคมมาก</p>
+                <p>❤️ <b>ความสัมพันธ์:</b> เซโน่กับสแตนลีย์เป็นเพื่อนสนิทกันมาตั้งแต่เด็กก่อนโลกจะกลายเป็นหิน เขาสัญญาว่าจะปกป้องและทำตามเป้าหมายของเซโนให้เป็นจริง ไม่ว่าเซโนจะเลือกทางไหนก็ตาม</p>
             </div>
-
-
-            <div class="content">
-
-                <div class="character-number">
-                    🎯 CHARACTER 03
-                </div>
-
-                <h2>
-                    สแตนลีย์ สไนเดอร์
-                    <span>
-                        Stanley Snyder
-                    </span>
-                </h2>
-
-
-                <p class="description">
-
-                    <strong>สแตนลีย์ สไนเดอร์ (Stanley Snyder)</strong>
-                    คือทหารรับจ้างฝีมือฉกาจระดับพระกาฬ และเป็น
-                    <strong>"มือขวา"</strong>
-                    ที่ซื่อสัตย์ที่สุดของ ดร. เซโน ใน
-                    <strong>Dr. Stone</strong>
-                    เขาทำหน้าที่เป็นผู้นำกองกำลังทหารของฝั่งอเมริกา
-                    และเป็นหนึ่งในตัวร้ายที่อันตรายที่สุดในเรื่องด้วยทักษะการรบและการใช้อาวุธที่ไร้เทียมทาน
-
-                </p>
-
-
-                <div class="info-box">
-
-                    <p>
-                        🚬 <b>เอกลักษณ์:</b>
-                        มักจะคาบบุหรี่อยู่ในปากตลอดเวลา
-                        (แม้ในโลกยุคหินเซโน่ก็สร้างยาสูบขึ้นให้)
-                        และมีรูปร่างหน้าตาสะสวยจนบางครั้งคนเข้าใจผิดว่าเป็นผู้หญิง
-                    </p>
-
-                    <p>
-                        🎯 <b>ทักษะการต่อสู้:</b>
-                        เป็นนักแม่นปืนขั้นเทพ สามารถยิงเป้าหมายระยะไกลได้อย่างแม่นยำ
-                        และเชี่ยวชาญการขับเครื่องบินรบ
-                    </p>
-
-                    <p>
-                        🥶 <b>บุคลิก:</b>
-                        เงียบขรึม เลือดเย็น มีไหวพริบและสัญชาตญาณการต่อสู้ที่เฉียบคมมาก
-                    </p>
-
-                    <p>
-                        ❤️ <b>ความสัมพันธ์:</b>
-                        เซโน่กับสแตนลีย์เป็นเพื่อนสนิทกันมาตั้งแต่เด็กก่อนโลกจะกลายเป็นหิน
-                        เขาสัญญาว่าจะปกป้องและทำตามเป้าหมายของเซโนให้เป็นจริง
-                        ไม่ว่าเซโนจะเลือกทางไหนก็ตาม
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
-
-    </article>
-
+    </div></article>
 </section>
 
-
-<!-- =========================================================
-     DIVIDER
-========================================================= -->
-
-<div class="science-divider">
-    ⚛️ 🧬 🔬 🧪 ⚗️ 🧠 ⚙️
-</div>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <div class="logo">
-        🧪 ⚛️ 🔬
-    </div>
-
-    <p class="copyright">
-        © 2026 DR. STONE • SCIENCE GALAXY
-    </p>
-
-    <p>
-        วิทยาศาสตร์คือพลังที่จะสร้างอนาคตของมนุษยชาติ
-    </p>
-
-</footer>
-
-
+<div class="science-divider">⚛️ 🧬 🔬 🧪 ⚗️ 🧠 ⚙️</div>
+<footer><div class="logo">🧪 ⚛️ 🔬</div><p class="copyright">© 2026 DR. STONE • SCIENCE GALAXY</p><p>วิทยาศาสตร์คือพลังที่จะสร้างอนาคตของมนุษยชาติ</p></footer>
 </body>
 </html>
