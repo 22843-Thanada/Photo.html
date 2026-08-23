@@ -3,15 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>DR. STONE — SCIENCE GALAXY</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
     margin:0;
     padding:0;
@@ -23,173 +17,295 @@ html{
 }
 
 body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:#01030a;
+    color:#eaffff;
     font-family:
         "Segoe UI",
         "Noto Sans Thai",
         Tahoma,
         sans-serif;
-
-    color:#eaffff;
-    background:#01040b;
-
-    min-height:100vh;
-    overflow-x:hidden;
 }
 
-
 /* =========================================================
-   SPACE BACKGROUND
+   GALAXY BACKGROUND
 ========================================================= */
 
 .space{
     position:fixed;
     inset:0;
-    z-index:-20;
+    z-index:-100;
     overflow:hidden;
 
     background:
         radial-gradient(
             circle at 50% 45%,
-            rgba(0,255,255,.09),
-            transparent 25%
+            rgba(0,255,255,.12),
+            transparent 20%
         ),
         radial-gradient(
-            circle at 15% 20%,
-            rgba(0,150,255,.12),
+            circle at 10% 15%,
+            rgba(0,140,255,.18),
             transparent 28%
         ),
         radial-gradient(
-            circle at 90% 80%,
-            rgba(120,40,255,.12),
+            circle at 90% 75%,
+            rgba(120,40,255,.20),
             transparent 30%
+        ),
+        radial-gradient(
+            circle at 45% 100%,
+            rgba(0,255,150,.10),
+            transparent 25%
         ),
         linear-gradient(
             135deg,
-            #01030a,
-            #020817,
-            #03020d,
+            #01020a,
+            #02091a,
+            #030414,
             #01040b
         );
 }
 
-
-/* ดาว */
+/* stars */
 
 .stars{
     position:absolute;
     inset:0;
 
     background-image:
-        radial-gradient(circle,#fff 1px,transparent 1px),
-        radial-gradient(circle,#65faff 1px,transparent 1px),
-        radial-gradient(circle,#8c78ff 1px,transparent 1px);
+        radial-gradient(circle,#ffffff 1px,transparent 1.5px),
+        radial-gradient(circle,#00ffff 1px,transparent 1.5px),
+        radial-gradient(circle,#806cff 1px,transparent 1.5px);
 
     background-size:
-        80px 80px,
+        75px 75px,
         145px 145px,
         230px 230px;
 
     background-position:
         0 0,
-        35px 50px,
-        100px 20px;
+        40px 60px,
+        110px 20px;
 
-    opacity:.6;
+    opacity:.65;
 
     animation:
-        starMove 35s linear infinite;
+        starsMove 40s linear infinite;
 }
 
-@keyframes starMove{
+@keyframes starsMove{
+
     from{
         transform:translateY(0);
     }
 
     to{
-        transform:translateY(100px);
+        transform:translateY(120px);
     }
 }
 
-
 /* =========================================================
-   GLOW NEBULA
+   NEBULA
 ========================================================= */
 
 .nebula{
     position:absolute;
     border-radius:50%;
-    filter:blur(80px);
-    opacity:.25;
+    filter:blur(100px);
+    opacity:.23;
 }
 
-.nebula.one{
-    width:500px;
-    height:500px;
+.nebula1{
+    width:550px;
+    height:550px;
     background:#00eaff;
-    left:-200px;
+    left:-250px;
     top:5%;
-    animation:nebulaMove 12s ease-in-out infinite;
+    animation:
+        nebulaFloat1 13s ease-in-out infinite;
 }
 
-.nebula.two{
-    width:600px;
-    height:600px;
+.nebula2{
+    width:650px;
+    height:650px;
     background:#633cff;
-    right:-250px;
-    top:35%;
-    animation:nebulaMove 15s ease-in-out infinite reverse;
+    right:-300px;
+    top:30%;
+    animation:
+        nebulaFloat2 16s ease-in-out infinite;
 }
 
-.nebula.three{
-    width:400px;
-    height:400px;
+.nebula3{
+    width:450px;
+    height:450px;
     background:#00ff99;
     left:35%;
-    bottom:-200px;
-    animation:nebulaMove 11s ease-in-out infinite;
+    bottom:-250px;
+    animation:
+        nebulaFloat3 12s ease-in-out infinite;
 }
 
-@keyframes nebulaMove{
+@keyframes nebulaFloat1{
 
     0%,100%{
         transform:translate(0,0) scale(1);
     }
 
     50%{
-        transform:translate(30px,-40px) scale(1.15);
+        transform:translate(50px,-30px) scale(1.2);
     }
 }
 
+@keyframes nebulaFloat2{
+
+    0%,100%{
+        transform:translate(0,0) scale(1);
+    }
+
+    50%{
+        transform:translate(-50px,40px) scale(1.15);
+    }
+}
+
+@keyframes nebulaFloat3{
+
+    0%,100%{
+        transform:translate(0,0);
+    }
+
+    50%{
+        transform:translate(20px,-50px);
+    }
+}
 
 /* =========================================================
-   FLOATING SCIENCE EMOJIS
+   SCIENCE GRID
+========================================================= */
+
+.grid{
+    position:absolute;
+    inset:-50%;
+    opacity:.12;
+
+    background:
+        linear-gradient(
+            rgba(0,255,255,.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,255,255,.15) 1px,
+            transparent 1px
+        );
+
+    background-size:70px 70px;
+
+    transform:
+        perspective(700px)
+        rotateX(62deg)
+        translateY(45%);
+
+    animation:
+        gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:0 140px;
+    }
+}
+
+/* =========================================================
+   LIGHT BEAM
+========================================================= */
+
+.light-beam{
+    position:absolute;
+
+    width:4px;
+    height:120vh;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,255,255,.7),
+            transparent
+        );
+
+    box-shadow:
+        0 0 30px #00ffff,
+        0 0 90px #00ffff;
+
+    opacity:.18;
+
+    transform:
+        rotate(25deg);
+
+    animation:
+        beamMove 8s linear infinite;
+}
+
+.light-beam:nth-child(1){
+    left:15%;
+    top:-20%;
+}
+
+.light-beam:nth-child(2){
+    left:70%;
+    top:-20%;
+    animation-delay:4s;
+}
+
+@keyframes beamMove{
+
+    from{
+        transform:
+            translateX(-500px)
+            rotate(25deg);
+    }
+
+    to{
+        transform:
+            translateX(900px)
+            rotate(25deg);
+    }
+}
+
+/* =========================================================
+   FLOATING SCIENCE SYMBOLS
 ========================================================= */
 
 .science{
     position:fixed;
-
     z-index:-5;
 
-    pointer-events:none;
+    font-size:32px;
 
-    font-size:30px;
-
-    opacity:.2;
+    opacity:.16;
 
     filter:
         drop-shadow(0 0 10px #00ffff)
-        drop-shadow(0 0 25px rgba(0,255,255,.4));
+        drop-shadow(0 0 25px #00ffff);
 
     animation:
-        scienceFloat 8s ease-in-out infinite;
+        scienceFloat 9s ease-in-out infinite;
+
+    pointer-events:none;
 }
 
 .science:nth-child(2n){
-    animation-duration:11s;
+    animation-duration:12s;
 }
 
 .science:nth-child(3n){
-    animation-duration:14s;
+    animation-duration:15s;
 }
 
 @keyframes scienceFloat{
@@ -197,7 +313,7 @@ body{
     0%,100%{
         transform:
             translate(0,0)
-            rotate(0deg);
+            rotate(0);
     }
 
     50%{
@@ -207,118 +323,8 @@ body{
     }
 }
 
-
 /* =========================================================
-   MOLECULES
-========================================================= */
-
-.molecule{
-    position:fixed;
-
-    z-index:-4;
-
-    width:90px;
-    height:90px;
-
-    opacity:.14;
-
-    animation:moleculeFloat 10s ease-in-out infinite;
-}
-
-.molecule span{
-    position:absolute;
-
-    width:16px;
-    height:16px;
-
-    border-radius:50%;
-
-    background:#7ffcff;
-
-    box-shadow:
-        0 0 10px #00ffff,
-        0 0 25px #00ffff;
-}
-
-.molecule span:nth-child(1){
-    left:38px;
-    top:5px;
-}
-
-.molecule span:nth-child(2){
-    left:5px;
-    top:55px;
-}
-
-.molecule span:nth-child(3){
-    right:5px;
-    top:55px;
-}
-
-.molecule span:nth-child(4){
-    left:38px;
-    bottom:0;
-}
-
-.molecule::before,
-.molecule::after{
-    content:"";
-
-    position:absolute;
-
-    width:55px;
-    height:2px;
-
-    background:#00ffff;
-
-    box-shadow:0 0 10px #00ffff;
-
-    transform-origin:left center;
-}
-
-.molecule::before{
-    left:46px;
-    top:18px;
-    transform:rotate(120deg);
-}
-
-.molecule::after{
-    left:46px;
-    top:18px;
-    transform:rotate(60deg);
-}
-
-.molecule.m1{
-    left:7%;
-    top:30%;
-}
-
-.molecule.m2{
-    right:8%;
-    top:18%;
-    transform:scale(.7);
-}
-
-.molecule.m3{
-    right:15%;
-    bottom:12%;
-    transform:scale(1.2);
-}
-
-@keyframes moleculeFloat{
-
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-
-    50%{
-        transform:translateY(-35px) rotate(180deg);
-    }
-}
-
-
-/* =========================================================
-   ENERGY PARTICLES
+   PARTICLES
 ========================================================= */
 
 .particle{
@@ -329,7 +335,7 @@ body{
 
     border-radius:50%;
 
-    background:#7fffff;
+    background:#8fffff;
 
     box-shadow:
         0 0 8px #00ffff,
@@ -337,15 +343,17 @@ body{
 
     z-index:-3;
 
-    animation:particleFly linear infinite;
+    animation:
+        particleMove linear infinite;
 }
 
-@keyframes particleFly{
+@keyframes particleMove{
 
     from{
         transform:
             translateY(110vh)
             translateX(0);
+
         opacity:0;
     }
 
@@ -360,169 +368,308 @@ body{
     to{
         transform:
             translateY(-20vh)
-            translateX(100px);
+            translateX(120px);
+
         opacity:0;
     }
 }
-
 
 /* =========================================================
-   ELECTRIC LINES
+   HERO
 ========================================================= */
 
-.energy-line{
-    position:fixed;
+.hero{
 
-    width:300px;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00ffff,
-            #ffffff,
-            #00ffff,
-            transparent
-        );
-
-    box-shadow:
-        0 0 15px #00ffff,
-        0 0 35px #00ffff;
-
-    opacity:.35;
-
-    z-index:-2;
-
-    transform:rotate(-25deg);
-
-    animation:
-        energyMove 6s linear infinite;
-}
-
-.energy-line.l1{
-    top:25%;
-    left:-300px;
-}
-
-.energy-line.l2{
-    top:70%;
-    right:-300px;
-    animation-delay:3s;
-}
-
-@keyframes energyMove{
-
-    0%{
-        transform:
-            translateX(0)
-            rotate(-25deg);
-        opacity:0;
-    }
-
-    20%{
-        opacity:.5;
-    }
-
-    80%{
-        opacity:.5;
-    }
-
-    100%{
-        transform:
-            translateX(160vw)
-            rotate(-25deg);
-        opacity:0;
-    }
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header{
-    min-height:75vh;
+    min-height:100vh;
 
     display:flex;
-    flex-direction:column;
+
+    align-items:center;
 
     justify-content:center;
-    align-items:center;
 
     text-align:center;
 
-    padding:80px 20px;
-
     position:relative;
+
+    padding:50px 20px;
+
+    overflow:hidden;
 }
 
-
-/* HUD corners */
+/* HUD */
 
 .hud{
+
     position:absolute;
 
     width:90%;
     height:80%;
 
-    pointer-events:none;
+    border:
+        1px solid
+        rgba(0,255,255,.12);
 
-    border:1px solid rgba(0,255,255,.08);
+    pointer-events:none;
 }
 
-.hud::before,
-.hud::after{
+.hud:before,
+.hud:after{
+
     content:"";
 
     position:absolute;
 
-    width:100px;
-    height:100px;
+    width:130px;
+    height:130px;
 
-    border-color:#00ffff;
-    border-style:solid;
+    border:
+        2px solid #00ffff;
 
-    opacity:.5;
+    filter:
+        drop-shadow(0 0 8px #00ffff);
+
+    opacity:.6;
 }
 
-.hud::before{
-    top:-1px;
-    left:-1px;
+.hud:before{
 
-    border-width:2px 0 0 2px;
+    left:-2px;
+    top:-2px;
+
+    border-width:
+        3px 0 0 3px;
 }
 
-.hud::after{
-    right:-1px;
-    bottom:-1px;
+.hud:after{
 
-    border-width:0 2px 2px 0;
+    right:-2px;
+    bottom:-2px;
+
+    border-width:
+        0 3px 3px 0;
 }
 
+/* =========================================================
+   LOGO
+========================================================= */
 
-/* badge */
+.logo-container{
 
-.badge{
-    padding:10px 22px;
+    position:relative;
+
+    max-width:1100px;
+
+    width:100%;
+
+    padding:40px;
+
+    animation:
+        logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.logo-ring{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:520px;
+    height:520px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border:
+        1px solid
+        rgba(0,255,255,.18);
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 60px
+        rgba(0,255,255,.10);
+
+    animation:
+        ringRotate 15s linear infinite;
+}
+
+.logo-ring:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:35px;
+
+    border:
+        1px dashed
+        rgba(130,100,255,.35);
+
+    border-radius:50%;
+}
+
+.logo-ring:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:90px;
+
+    border:
+        1px solid
+        rgba(0,255,170,.25);
+
+    border-radius:50%;
+}
+
+@keyframes ringRotate{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            rotate(0);
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+}
+
+/* SVG LOGO */
+
+.logo-svg{
+
+    width:
+        min(850px,95vw);
+
+    height:auto;
+
+    position:relative;
+
+    z-index:3;
+
+    overflow:visible;
+}
+
+.logo-main{
+
+    font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+    font-size:115px;
+
+    font-weight:900;
+
+    letter-spacing:7px;
+
+    fill:url(#logoGradient);
+
+    stroke:#ffffff;
+
+    stroke-width:1;
+
+    paint-order:stroke;
+
+    filter:
+        drop-shadow(0 0 8px #00ffff)
+        drop-shadow(0 0 25px #00ffff)
+        drop-shadow(0 0 55px rgba(100,80,255,.7));
+}
+
+.logo-sub{
+
+    font-family:
+        "Segoe UI",
+        sans-serif;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:9px;
+
+    fill:#72faff;
+
+    filter:
+        drop-shadow(0 0 8px #00ffff);
+}
+
+.logo-small{
+
+    font-family:
+        monospace;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    fill:#6c94a2;
+}
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero-description{
+
+    position:relative;
+
+    z-index:5;
+
+    margin-top:20px;
+
+    color:#c3dbe4;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:
+        10px 22px;
 
     border-radius:999px;
 
-    border:1px solid rgba(0,255,255,.6);
+    border:
+        1px solid
+        rgba(0,255,255,.6);
+
+    color:#75faff;
 
     background:
         rgba(0,255,255,.04);
 
-    color:#7efaff;
-
-    font-size:13px;
-
     letter-spacing:3px;
 
-    box-shadow:
-        0 0 20px rgba(0,255,255,.15);
+    font-size:12px;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,255,.15);
 
     animation:
         badgePulse 3s ease-in-out infinite;
@@ -530,198 +677,45 @@ header{
 
 @keyframes badgePulse{
 
-    0%,100%{
-        box-shadow:
-            0 0 15px rgba(0,255,255,.1);
-    }
-
     50%{
         box-shadow:
-            0 0 35px rgba(0,255,255,.35);
+            0 0 45px
+            rgba(0,255,255,.35);
     }
 }
-
-
-/* title */
-
-header h1{
-
-    font-size:
-        clamp(55px,9vw,120px);
-
-    font-weight:1000;
-
-    letter-spacing:5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #57faff,
-            #9e7cff,
-            #ffffff,
-            #57faff
-        );
-
-    background-size:300%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    text-shadow:
-        0 0 20px rgba(0,255,255,.3),
-        0 0 60px rgba(90,80,255,.25);
-
-    animation:
-        titleGradient 6s linear infinite;
-}
-
-@keyframes titleGradient{
-
-    from{
-        background-position:0%;
-    }
-
-    to{
-        background-position:300%;
-    }
-}
-
-
-header p{
-    margin-top:18px;
-
-    font-size:21px;
-
-    color:#b7d9e5;
-}
-
-.subtitle{
-
-    margin-top:12px;
-
-    color:#58f8ff;
-
-    letter-spacing:5px;
-
-    font-size:12px;
-}
-
 
 /* =========================================================
-   DNA
+   SECTION
 ========================================================= */
 
-.dna{
+.section{
 
-    position:absolute;
+    position:relative;
 
-    right:10%;
-    top:20%;
+    width:
+        min(1400px,94%);
 
-    width:100px;
-    height:300px;
-
-    opacity:.18;
-
-    transform:rotate(15deg);
-
-    animation:dnaRotate 10s linear infinite;
+    margin:
+        0 auto 80px;
 }
-
-.dna .strand{
-
-    position:absolute;
-
-    width:6px;
-    height:100%;
-
-    border-radius:50%;
-
-    border-left:2px solid #00ffff;
-
-    border-right:2px solid #7d6cff;
-}
-
-.dna .strand.a{
-    left:20px;
-    transform:skewX(15deg);
-}
-
-.dna .strand.b{
-    right:20px;
-    transform:skewX(-15deg);
-}
-
-.dna i{
-    position:absolute;
-
-    left:20px;
-
-    width:60px;
-    height:2px;
-
-    background:#7fffff;
-
-    box-shadow:
-        0 0 8px #00ffff;
-}
-
-.dna i:nth-child(3){top:30px;}
-.dna i:nth-child(4){top:65px;}
-.dna i:nth-child(5){top:100px;}
-.dna i:nth-child(6){top:135px;}
-.dna i:nth-child(7){top:170px;}
-.dna i:nth-child(8){top:205px;}
-.dna i:nth-child(9){top:240px;}
-.dna i:nth-child(10){top:275px;}
-
-@keyframes dnaRotate{
-
-    0%{
-        transform:
-            rotate(15deg)
-            translateY(0);
-    }
-
-    50%{
-        transform:
-            rotate(195deg)
-            translateY(-20px);
-    }
-
-    100%{
-        transform:
-            rotate(375deg)
-            translateY(0);
-    }
-}
-
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
 
 .section-title{
 
-    width:min(1200px,92%);
-
-    margin:0 auto 35px;
-
     text-align:center;
+
+    margin-bottom:40px;
 }
 
 .section-title h2{
 
     font-size:
-        clamp(28px,4vw,45px);
+        clamp(30px,5vw,52px);
 
-    color:#fff;
+    color:#ffffff;
 
     text-shadow:
-        0 0 20px rgba(0,255,255,.3);
+        0 0 20px
+        rgba(0,255,255,.4);
 }
 
 .section-title p{
@@ -733,115 +727,112 @@ header p{
     font-size:14px;
 }
 
+.section-line{
+
+    width:220px;
+
+    height:2px;
+
+    margin:20px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00ffff,
+            #8b5cff,
+            #00ffae,
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px #00ffff;
+}
 
 /* =========================================================
-   GALLERY
+   CHARACTER GRID
 ========================================================= */
 
-.gallery{
-
-    width:min(1450px,94%);
-
-    margin:auto;
+.characters{
 
     display:grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:28px;
-
-    align-items:start;
+    gap:30px;
 }
 
-
 /* =========================================================
-   CARD
+   CHARACTER CARD
 ========================================================= */
 
 .card{
 
     position:relative;
 
-    padding:2px;
-
     border-radius:28px;
+
+    padding:2px;
 
     background:
         linear-gradient(
             135deg,
             #00ffff,
-            #514cff,
-            #00ffa6,
+            #634cff,
+            #00ffae,
             #00ffff
         );
 
-    background-size:300% 300%;
+    background-size:
+        300% 300%;
 
     animation:
-        borderFlow 7s linear infinite,
-        cardFloat 7s ease-in-out infinite;
+        borderFlow 7s linear infinite;
 
     box-shadow:
-        0 0 30px rgba(0,255,255,.13),
-        0 25px 80px rgba(0,0,0,.5);
+        0 0 35px
+        rgba(0,255,255,.15),
+
+        0 30px 80px
+        rgba(0,0,0,.55);
 
     transition:
-        transform .5s ease,
-        box-shadow .5s ease;
+        transform .4s ease,
+        box-shadow .4s ease;
 }
 
-.card:nth-child(2){
-    animation-delay:1s;
-}
+.card:hover{
 
-.card:nth-child(3){
-    animation-delay:2s;
+    transform:
+        translateY(-18px)
+        scale(1.025);
+
+    box-shadow:
+        0 0 70px
+        rgba(0,255,255,.4),
+
+        0 40px 100px
+        rgba(0,0,0,.7);
 }
 
 @keyframes borderFlow{
 
     0%{
-        background-position:0% 50%;
+        background-position:
+            0% 50%;
     }
 
     50%{
-        background-position:100% 50%;
+        background-position:
+            100% 50%;
     }
 
     100%{
-        background-position:0% 50%;
+        background-position:
+            0% 50%;
     }
 }
-
-@keyframes cardFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-15px);
-    }
-}
-
-.card:hover{
-
-    animation-play-state:paused;
-
-    transform:
-        translateY(-20px)
-        scale(1.025);
-
-    box-shadow:
-        0 0 55px rgba(0,255,255,.3),
-        0 35px 100px rgba(0,0,0,.7);
-}
-
-
-/* =========================================================
-   CARD INNER
-========================================================= */
 
 .card-inner{
 
@@ -854,58 +845,158 @@ header p{
     background:
         linear-gradient(
             160deg,
-            rgba(6,20,38,.98),
-            rgba(2,6,17,.99)
+            rgba(5,18,35,.98),
+            rgba(1,5,15,.99)
         );
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(20px);
 }
 
+/* CARD HEADER */
+
+.card-header{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    padding:
+        16px 20px 4px;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    color:#65f7ff;
+}
+
+.online{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+}
+
+.online-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#00ffae;
+
+    box-shadow:
+        0 0 12px #00ffae;
+
+    animation:
+        onlinePulse 1.5s infinite;
+}
+
+@keyframes onlinePulse{
+
+    50%{
+        opacity:.3;
+    }
+}
 
 /* =========================================================
-   IMAGE
+   IMAGE FRAME
 ========================================================= */
 
 .image-frame{
 
     position:relative;
 
+    height:450px;
+
     margin:14px;
 
-    height:420px;
-
-    border-radius:20px;
+    border-radius:21px;
 
     overflow:hidden;
 
+    border:
+        1px solid
+        rgba(0,255,255,.7);
+
     background:#01040a;
 
-    border:
-        1px solid rgba(0,255,255,.6);
-
     box-shadow:
-        inset 0 0 40px rgba(0,255,255,.12),
-        0 0 30px rgba(0,255,255,.12);
+        inset 0 0 50px
+        rgba(0,255,255,.12),
 
-    animation:
-        imageFloat 5s ease-in-out infinite;
+        0 0 30px
+        rgba(0,255,255,.15);
 }
 
-@keyframes imageFloat{
+.image-frame img{
 
-    0%,100%{
-        transform:translateY(0);
-    }
+    width:100%;
+    height:100%;
 
-    50%{
-        transform:translateY(-5px);
-    }
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .8s ease,
+        filter .8s ease;
 }
 
+.card:hover .image-frame img{
 
-/* เส้นสแกน */
+    transform:
+        scale(1.07);
 
-.image-frame::after{
+    filter:
+        saturate(1.25)
+        contrast(1.05);
+}
+
+/* SCAN GRID */
+
+.image-frame:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            rgba(0,255,255,.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,255,255,.08) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        40px 40px;
+
+    opacity:.3;
+
+    mix-blend-mode:
+        screen;
+}
+
+/* SCAN LINE */
+
+.image-frame:after{
 
     content:"";
 
@@ -915,6 +1006,8 @@ header p{
     right:0;
 
     height:2px;
+
+    z-index:4;
 
     background:
         linear-gradient(
@@ -930,15 +1023,11 @@ header p{
         0 0 15px #00ffff,
         0 0 30px #00ffff;
 
-    opacity:.65;
-
     animation:
-        scan 4s linear infinite;
-
-    pointer-events:none;
+        scanLine 4s linear infinite;
 }
 
-@keyframes scan{
+@keyframes scanLine{
 
     from{
         top:-5%;
@@ -949,132 +1038,152 @@ header p{
     }
 }
 
+/* IMAGE CORNERS */
 
-/* มุม HUD ของรูป */
+.corner{
 
-.image-frame .corner{
     position:absolute;
-
-    width:30px;
-    height:30px;
 
     z-index:5;
 
-    border-color:#00ffff;
+    width:35px;
+    height:35px;
+
+    border-color:
+        #00ffff;
+
     border-style:solid;
 
     filter:
-        drop-shadow(0 0 6px #00ffff);
+        drop-shadow(
+            0 0 7px #00ffff
+        );
 }
 
-.corner.c1{
-    top:10px;
-    left:10px;
+.corner.a{
+    top:12px;
+    left:12px;
     border-width:2px 0 0 2px;
 }
 
-.corner.c2{
-    top:10px;
-    right:10px;
+.corner.b{
+    top:12px;
+    right:12px;
     border-width:2px 2px 0 0;
 }
 
-.corner.c3{
-    bottom:10px;
-    left:10px;
+.corner.c{
+    bottom:12px;
+    left:12px;
     border-width:0 0 2px 2px;
 }
 
-.corner.c4{
-    bottom:10px;
-    right:10px;
+.corner.d{
+    bottom:12px;
+    right:12px;
     border-width:0 2px 2px 0;
 }
 
+/* IMAGE INFO */
 
-/* PDF */
+.image-info{
 
-.image-frame iframe{
+    position:absolute;
 
-    width:100%;
-    height:100%;
+    left:18px;
+    bottom:18px;
 
-    border:0;
+    z-index:6;
 
-    display:block;
+    padding:
+        8px 13px;
 
-    background:#01040a;
+    border-radius:8px;
+
+    background:
+        rgba(1,7,16,.75);
+
+    border:
+        1px solid
+        rgba(0,255,255,.4);
+
+    backdrop-filter:
+        blur(10px);
+
+    color:#8ffcff;
+
+    font-family:
+        monospace;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
 }
 
-
 /* =========================================================
-   CONTENT
+   CARD CONTENT
 ========================================================= */
 
 .content{
 
     padding:
-        10px
-        24px
-        28px;
+        10px 24px 28px;
 }
 
-.character-number{
+.number{
 
     display:inline-block;
 
-    padding:6px 12px;
+    padding:
+        6px 12px;
 
     border-radius:999px;
 
     border:
-        1px solid rgba(0,255,255,.3);
+        1px solid
+        rgba(0,255,255,.3);
+
+    color:#65f7ff;
 
     background:
         rgba(0,255,255,.05);
-
-    color:#65f7ff;
 
     font-size:11px;
 
     letter-spacing:2px;
 
-    margin-bottom:13px;
+    margin-bottom:14px;
 }
 
 .content h2{
 
-    font-size:27px;
+    font-size:28px;
 
     line-height:1.3;
 
-    color:white;
+    color:#ffffff;
 
     text-shadow:
-        0 0 18px rgba(0,255,255,.25);
-
-    margin-bottom:14px;
+        0 0 18px
+        rgba(0,255,255,.25);
 }
 
 .content h2 span{
 
     display:block;
 
-    margin-top:4px;
-
-    font-size:16px;
+    margin-top:5px;
 
     color:#62efff;
+
+    font-size:16px;
 
     font-weight:500;
 }
 
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
 .description{
+
+    margin-top:15px;
 
     color:#c5d9e2;
 
@@ -1084,15 +1193,13 @@ header p{
 }
 
 .description strong{
+
     color:#75faff;
 }
 
+/* INFO */
 
-/* =========================================================
-   INFO BOX
-========================================================= */
-
-.info-box{
+.info{
 
     margin-top:18px;
 
@@ -1101,20 +1208,22 @@ header p{
     border-radius:17px;
 
     border:
-        1px solid rgba(0,255,255,.13);
+        1px solid
+        rgba(0,255,255,.14);
 
     background:
         linear-gradient(
             135deg,
-            rgba(0,255,255,.045),
-            rgba(100,80,255,.06)
+            rgba(0,255,255,.05),
+            rgba(100,80,255,.07)
         );
 
     box-shadow:
-        inset 0 0 30px rgba(0,255,255,.025);
+        inset 0 0 30px
+        rgba(0,255,255,.025);
 }
 
-.info-box p{
+.info p{
 
     color:#bdd2dc;
 
@@ -1125,10 +1234,10 @@ header p{
     margin:7px 0;
 }
 
-.info-box b{
+.info b{
+
     color:#7dfaff;
 }
-
 
 /* =========================================================
    RELATIONSHIP
@@ -1136,26 +1245,25 @@ header p{
 
 .relationship{
 
-    grid-column:1 / -1;
-
-    position:relative;
+    grid-column:
+        1 / -1;
 
     height:80px;
+
+    position:relative;
 
     display:flex;
 
     align-items:center;
 
     justify-content:center;
-
-    z-index:10;
 }
 
 .relationship-line{
 
     position:absolute;
 
-    width:75%;
+    width:70%;
 
     height:2px;
 
@@ -1164,77 +1272,50 @@ header p{
             90deg,
             transparent,
             #00ffff,
-            #8b6cff,
-            #00ffff,
+            #8b5cff,
+            #00ffae,
             transparent
         );
 
     box-shadow:
-        0 0 12px #00ffff,
-        0 0 25px rgba(0,255,255,.6);
-
-    animation:
-        relationshipPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes relationshipPulse{
-
-    0%,100%{
-        opacity:.35;
-        transform:scaleX(.9);
-    }
-
-    50%{
-        opacity:1;
-        transform:scaleX(1);
-    }
+        0 0 15px #00ffff;
 }
 
 .relationship-label{
 
     position:relative;
 
-    padding:12px 28px;
+    z-index:2;
+
+    padding:
+        12px 28px;
 
     border-radius:999px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(3,12,26,.98),
-            rgba(14,18,48,.98)
-        );
+        rgba(3,12,26,.95);
 
     border:
-        1px solid rgba(0,255,255,.65);
+        1px solid
+        rgba(0,255,255,.6);
 
     box-shadow:
-        0 0 25px rgba(0,255,255,.25),
-        inset 0 0 20px rgba(0,255,255,.05);
-
-    color:white;
-
-    font-size:15px;
+        0 0 30px
+        rgba(0,255,255,.25);
 
     font-weight:700;
-
-    backdrop-filter:blur(15px);
-
-    z-index:2;
 }
 
-.relationship-label .heart{
+.heart{
 
     color:#ff4f9b;
 
     margin-left:10px;
 
-    font-size:21px;
-
-    display:inline-block;
-
     filter:
-        drop-shadow(0 0 7px #ff4f9b);
+        drop-shadow(
+            0 0 8px #ff4f9b
+        );
 
     animation:
         heartBeat 1.2s infinite;
@@ -1242,15 +1323,10 @@ header p{
 
 @keyframes heartBeat{
 
-    0%,100%{
-        transform:scale(1);
-    }
-
     50%{
         transform:scale(1.3);
     }
 }
-
 
 /* =========================================================
    SCIENCE CORE
@@ -1258,24 +1334,22 @@ header p{
 
 .core{
 
-    width:180px;
-    height:180px;
+    width:220px;
+    height:220px;
 
-    margin:100px auto 70px;
+    margin:
+        120px auto 90px;
 
     position:relative;
 
     display:flex;
 
-    justify-content:center;
     align-items:center;
+
+    justify-content:center;
 }
 
-.core::before{
-
-    content:"";
-
-    position:absolute;
+.core-center{
 
     width:90px;
     height:90px;
@@ -1285,82 +1359,79 @@ header p{
     background:
         radial-gradient(
             circle,
-            white 0%,
-            #00ffff 15%,
-            #008cff 35%,
-            transparent 70%
+            #ffffff 0%,
+            #00ffff 18%,
+            #008cff 40%,
+            transparent 72%
         );
 
     box-shadow:
-        0 0 30px #00ffff,
-        0 0 80px #008cff,
-        0 0 130px rgba(0,255,255,.5);
+        0 0 35px #00ffff,
+        0 0 90px #008cff,
+        0 0 140px rgba(0,255,255,.5);
 
     animation:
-        corePulse 2s ease-in-out infinite;
+        corePulse 2s infinite;
 }
 
 @keyframes corePulse{
-
-    0%,100%{
-        transform:scale(.85);
-    }
 
     50%{
         transform:scale(1.15);
     }
 }
 
-.core .ring{
+.core-ring{
 
     position:absolute;
-
-    width:160px;
-    height:160px;
 
     border-radius:50%;
 
     border:
-        1px solid rgba(0,255,255,.7);
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.2);
+        1px solid
+        rgba(0,255,255,.7);
 
     animation:
-        ringRotate 6s linear infinite;
+        coreRotate 6s linear infinite;
 }
 
-.core .ring:nth-child(2){
-
-    width:120px;
-    height:180px;
-
-    border-color:#7f6cff;
-
-    animation-duration:4s;
-}
-
-.core .ring:nth-child(3){
+.core-ring.r1{
 
     width:180px;
-    height:120px;
-
-    border-color:#00ffae;
-
-    animation-duration:5s;
+    height:180px;
 }
 
-@keyframes ringRotate{
+.core-ring.r2{
 
-    from{
-        transform:rotate(0deg);
-    }
+    width:135px;
+    height:210px;
+
+    border-color:
+        #805cff;
+
+    animation-duration:
+        4s;
+}
+
+.core-ring.r3{
+
+    width:210px;
+    height:135px;
+
+    border-color:
+        #00ffae;
+
+    animation-duration:
+        5s;
+}
+
+@keyframes coreRotate{
 
     to{
-        transform:rotate(360deg);
+        transform:
+            rotate(360deg);
     }
 }
-
 
 /* =========================================================
    FOOTER
@@ -1370,47 +1441,50 @@ footer{
 
     text-align:center;
 
-    padding:55px 20px 70px;
+    padding:
+        55px 20px 70px;
 
     border-top:
-        1px solid rgba(0,255,255,.12);
+        1px solid
+        rgba(0,255,255,.12);
 
     background:
         linear-gradient(
             180deg,
             transparent,
-            rgba(0,255,255,.035)
+            rgba(0,255,255,.04)
         );
 }
 
-footer .logo{
+footer .icons{
 
-    font-size:34px;
+    font-size:35px;
 
     margin-bottom:12px;
 
     filter:
-        drop-shadow(0 0 15px #00ffff);
+        drop-shadow(
+            0 0 15px #00ffff
+        );
 }
 
 footer h3{
 
     color:#72f8ff;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     font-size:18px;
 }
 
 footer p{
 
-    color:#718d99;
-
     margin-top:10px;
+
+    color:#718d99;
 
     font-size:13px;
 }
-
 
 /* =========================================================
    RESPONSIVE
@@ -1418,11 +1492,14 @@ footer p{
 
 @media(max-width:1100px){
 
-    .gallery{
+    .characters{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
 
         max-width:760px;
+
+        margin:auto;
     }
 
     .relationship{
@@ -1445,46 +1522,60 @@ footer p{
                 180deg,
                 transparent,
                 #00ffff,
-                #8b6cff,
+                #8b5cff,
                 transparent
             );
     }
 
-    .dna{
+    .logo-ring{
 
-        opacity:.08;
-
-        right:2%;
+        width:420px;
+        height:420px;
     }
 }
 
-
 @media(max-width:600px){
 
-    header{
+    .hero{
 
-        min-height:70vh;
+        min-height:
+            90vh;
 
-        padding:60px 15px;
+        padding:
+            40px 15px;
     }
 
-    header h1{
+    .logo-container{
 
-        font-size:48px;
-
-        letter-spacing:2px;
+        padding:20px;
     }
 
-    header p{
+    .logo-ring{
+
+        width:300px;
+        height:300px;
+    }
+
+    .logo-main{
+
+        font-size:70px;
+    }
+
+    .logo-sub{
 
         font-size:16px;
+
+        letter-spacing:4px;
     }
 
-    .subtitle{
+    .logo-small{
 
-        font-size:9px;
+        font-size:8px;
+    }
 
-        letter-spacing:3px;
+    .hero-description{
+
+        font-size:15px;
     }
 
     .hud{
@@ -1493,43 +1584,17 @@ footer p{
         height:75%;
     }
 
-    .dna{
-
-        display:none;
-    }
-
-    .gallery{
-
-        width:94%;
-
-        gap:18px;
-    }
-
-    .card{
-
-        border-radius:23px;
-    }
-
-    .card-inner{
-
-        border-radius:21px;
-    }
-
     .image-frame{
 
         height:400px;
 
         margin:10px;
-
-        border-radius:17px;
     }
 
     .content{
 
         padding:
-            8px
-            18px
-            24px;
+            8px 18px 24px;
     }
 
     .content h2{
@@ -1542,7 +1607,7 @@ footer p{
         font-size:14px;
     }
 
-    .info-box p{
+    .info p{
 
         font-size:13px;
     }
@@ -1556,494 +1621,651 @@ footer p{
 
         text-align:center;
     }
-
-    .science{
-
-        font-size:22px;
-    }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <!-- =========================================================
-     SPACE SYSTEM
+     SPACE BACKGROUND
 ========================================================= -->
 
 <div class="space">
 
     <div class="stars"></div>
 
-    <div class="nebula one"></div>
-    <div class="nebula two"></div>
-    <div class="nebula three"></div>
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+
+    <div class="grid"></div>
+
+    <div class="light-beam"></div>
+    <div class="light-beam"></div>
 
 </div>
 
+<!-- FLOATING SCIENCE -->
 
-<!-- =========================================================
-     SCIENCE EMOJIS
-========================================================= -->
+<div class="science" style="left:5%;top:15%">🧪</div>
+<div class="science" style="left:15%;top:70%">🔬</div>
+<div class="science" style="left:28%;top:12%">🧬</div>
+<div class="science" style="left:43%;top:82%">⚛️</div>
+<div class="science" style="left:56%;top:17%">⚗️</div>
+<div class="science" style="left:72%;top:72%">🧫</div>
+<div class="science" style="left:87%;top:20%">🧠</div>
+<div class="science" style="left:93%;top:80%">⚙️</div>
+<div class="science" style="left:35%;top:45%">💡</div>
+<div class="science" style="left:65%;top:43%">🚀</div>
 
-<div class="science" style="left:5%;top:15%;">🧪</div>
-<div class="science" style="left:15%;top:70%;">🔬</div>
-<div class="science" style="left:28%;top:12%;">🧬</div>
-<div class="science" style="left:43%;top:82%;">⚛️</div>
-<div class="science" style="left:56%;top:17%;">⚗️</div>
-<div class="science" style="left:72%;top:72%;">🧫</div>
-<div class="science" style="left:87%;top:20%;">🧠</div>
-<div class="science" style="left:93%;top:80%;">⚙️</div>
-<div class="science" style="left:35%;top:45%;">💡</div>
-<div class="science" style="left:65%;top:43%;">🚀</div>
+<!-- PARTICLES -->
 
+<script>
 
-<!-- =========================================================
-     MOLECULES
-========================================================= -->
+for(let i=0;i<55;i++){
 
-<div class="molecule m1">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    const particle =
+        document.createElement("div");
 
-<div class="molecule m2">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    particle.className =
+        "particle";
 
-<div class="molecule m3">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    particle.style.left =
+        Math.random()*100+"%";
 
+    particle.style.animationDuration =
+        (7+Math.random()*14)+"s";
 
-<!-- =========================================================
-     ENERGY LINES
-========================================================= -->
+    particle.style.animationDelay =
+        (Math.random()*10)+"s";
 
-<div class="energy-line l1"></div>
-<div class="energy-line l2"></div>
+    const size =
+        (2+Math.random()*4)+"px";
 
+    particle.style.width =
+        size;
 
-<!-- =========================================================
-     PARTICLES
-========================================================= -->
+    particle.style.height =
+        size;
 
-<div class="particle" style="left:5%;animation-duration:9s;"></div>
-<div class="particle" style="left:12%;animation-duration:13s;"></div>
-<div class="particle" style="left:20%;animation-duration:8s;"></div>
-<div class="particle" style="left:29%;animation-duration:15s;"></div>
-<div class="particle" style="left:38%;animation-duration:10s;"></div>
-<div class="particle" style="left:47%;animation-duration:12s;"></div>
-<div class="particle" style="left:56%;animation-duration:8s;"></div>
-<div class="particle" style="left:65%;animation-duration:14s;"></div>
-<div class="particle" style="left:74%;animation-duration:11s;"></div>
-<div class="particle" style="left:84%;animation-duration:9s;"></div>
-<div class="particle" style="left:94%;animation-duration:13s;"></div>
+    document.body.appendChild(
+        particle
+    );
+}
+
+</script>
 
 
 <!-- =========================================================
-     HEADER
+     HERO
 ========================================================= -->
 
-<header>
+<section class="hero">
 
     <div class="hud"></div>
 
-    <div class="dna">
+    <div class="logo-container">
 
-        <div class="strand a"></div>
-        <div class="strand b"></div>
+        <div class="logo-ring"></div>
 
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
+        <div class="hero-badge">
+            ⚛️ SCIENCE SYSTEM ONLINE • 2026
+        </div>
+
+        <!-- SVG LOGO -->
+
+        <svg
+            class="logo-svg"
+            viewBox="0 0 1000 330"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+
+                <linearGradient
+                    id="logoGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#ffffff"/>
+
+                    <stop
+                        offset="25%"
+                        stop-color="#4fffff"/>
+
+                    <stop
+                        offset="50%"
+                        stop-color="#8b6cff"/>
+
+                    <stop
+                        offset="75%"
+                        stop-color="#00ffae"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#ffffff"/>
+
+                </linearGradient>
+
+                <filter
+                    id="glow">
+
+                    <feGaussianBlur
+                        stdDeviation="5"
+                        result="blur"/>
+
+                    <feMerge>
+
+                        <feMergeNode
+                            in="blur"/>
+
+                        <feMergeNode
+                            in="SourceGraphic"/>
+
+                    </feMerge>
+
+                </filter>
+
+            </defs>
+
+            <!-- science orbit -->
+
+            <ellipse
+                cx="500"
+                cy="145"
+                rx="390"
+                ry="90"
+                fill="none"
+                stroke="#00ffff"
+                stroke-width="2"
+                opacity=".45"
+                transform="rotate(-10 500 145)"/>
+
+            <ellipse
+                cx="500"
+                cy="145"
+                rx="390"
+                ry="90"
+                fill="none"
+                stroke="#8b5cff"
+                stroke-width="2"
+                opacity=".3"
+                transform="rotate(35 500 145)"/>
+
+            <!-- atom -->
+
+            <circle
+                cx="500"
+                cy="145"
+                r="15"
+                fill="#ffffff"
+                filter="url(#glow)"/>
+
+            <text
+                x="500"
+                y="160"
+                text-anchor="middle"
+                class="logo-main">
+
+                DR. STONE
+
+            </text>
+
+            <text
+                x="500"
+                y="220"
+                text-anchor="middle"
+                class="logo-sub">
+
+                SCIENCE GALAXY
+
+            </text>
+
+            <text
+                x="500"
+                y="260"
+                text-anchor="middle"
+                class="logo-small">
+
+                KNOWLEDGE • SCIENCE • DISCOVERY • HUMANITY
+
+            </text>
+
+        </svg>
+
+        <p class="hero-description">
+
+            🧪 โลกแห่งวิทยาศาสตร์ • การค้นพบ • เทคโนโลยี • มนุษยชาติ
+
+        </p>
 
     </div>
 
-
-    <div class="badge">
-        ⚛️ SCIENCE SYSTEM ONLINE • 2026
-    </div>
-
-
-    <h1>
-        DR. STONE
-    </h1>
-
-
-    <p>
-        🧪 SCIENCE GALAXY — โลกแห่งวิทยาศาสตร์และการค้นพบ
-    </p>
-
-
-    <div class="subtitle">
-        KNOWLEDGE • SCIENCE • DISCOVERY • HUMANITY
-    </div>
-
-</header>
+</section>
 
 
 <!-- =========================================================
-     SECTION
+     DATABASE
 ========================================================= -->
 
-<div class="section-title">
+<section class="section">
 
-    <h2>
-        🔬 SCIENCE CHARACTER DATABASE
-    </h2>
+    <div class="section-title">
 
-    <p>
-        ฐานข้อมูลตัวละครแห่งอาณาจักรวิทยาศาสตร์
-    </p>
+        <h2>
+            🔬 SCIENCE CHARACTER DATABASE
+        </h2>
 
-</div>
+        <p>
+            ฐานข้อมูลตัวละครแห่งอาณาจักรวิทยาศาสตร์
+        </p>
 
+        <div class="section-line"></div>
 
-<!-- =========================================================
-     GALLERY
-========================================================= -->
-
-<section class="gallery">
+    </div>
 
 
-    <!-- =====================================================
-         SENKU
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
+    <div class="characters">
 
 
-            <div class="image-frame">
+        <!-- =================================================
+             SENKU
+        ================================================== -->
 
-                <div class="corner c1"></div>
-                <div class="corner c2"></div>
-                <div class="corner c3"></div>
-                <div class="corner c4"></div>
+        <article class="card">
 
-                <iframe
-                    src="ishigami%20senku%20ii.pdf"
-                    title="Ishigami Senku">
-                </iframe>
+            <div class="card-inner">
+
+                <div class="card-header">
+
+                    <span>
+                        ISHIGAMI LAB
+                    </span>
+
+                    <span class="online">
+                        <i class="online-dot"></i>
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="image-frame">
+
+                    <div class="corner a"></div>
+                    <div class="corner b"></div>
+                    <div class="corner c"></div>
+                    <div class="corner d"></div>
+
+                    <!-- รูปไฟล์ที่ 1 -->
+
+                    <img
+                        src="__IMAGE_1__"
+                        alt="Ishigami Senku">
+
+                    <div class="image-info">
+
+                        IMAGE FILE 01
+                        • SCIENCE KINGDOM
+
+                    </div>
+
+                </div>
+
+
+                <div class="content">
+
+                    <div class="number">
+
+                        🧪 CHARACTER 01
+
+                    </div>
+
+                    <h2>
+
+                        อิชิกามิ เซ็นคู
+
+                        <span>
+                            Ishigami Senku
+                        </span>
+
+                    </h2>
+
+
+                    <p class="description">
+
+                        <strong>
+                            อิชิกามิ เซ็นคู
+                        </strong>
+
+                        เป็นตัวเอกหลักจาก
+                        <strong>Dr. Stone</strong>
+
+                        เด็กหนุ่มอัจฉริยะผู้มีความรู้
+                        รอบด้านทางวิทยาศาสตร์
+                        และมุ่งสร้างอารยธรรมมนุษย์ขึ้นใหม่
+                        ด้วยพลังของวิทยาศาสตร์
+
+                    </p>
+
+
+                    <div class="info">
+
+                        <p>
+                            🧠
+                            <b>ความสามารถ:</b>
+                            เคมี ฟิสิกส์ ชีววิทยา
+                            คณิตศาสตร์ และวิศวกรรม
+                        </p>
+
+                        <p>
+                            🎯
+                            <b>เป้าหมาย:</b>
+                            สร้างอาณาจักรวิทยาศาสตร์
+                        </p>
+
+                        <p>
+                            🧪
+                            <b>บุคลิก:</b>
+                            ฉลาด มีเหตุผล
+                            และเชื่อมั่นในวิทยาศาสตร์
+                        </p>
+
+                        <p>
+                            ⚡
+                            <b>จุดเด่น:</b>
+                            ใช้ความรู้แก้ปัญหา
+                            ที่ดูเหมือนเป็นไปไม่ได้
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
-
-            <div class="content">
-
-                <div class="character-number">
-                    🧪 CHARACTER 01
-                </div>
+        </article>
 
 
-                <h2>
+        <!-- RELATIONSHIP -->
 
-                    อิชิกามิ เซ็นคู
+        <div class="relationship">
 
-                    <span>
-                        Ishigami Senku
-                    </span>
+            <div class="relationship-line"></div>
 
-                </h2>
+            <div class="relationship-label">
 
+                🧑‍🏫
+                ศิษย์อาจารย์
 
-                <p class="description">
-
-                    <strong>
-                        อิชิกามิ เซ็นคู (Ishigami Senku)
-                    </strong>
-                    เป็นตัวเอกหลักจากมังงะและอนิเมะเรื่อง
-                    <strong>Dr. Stone</strong>
-                    เขาเป็นเด็กหนุ่มอัจฉริยะผู้มีความรู้รอบด้านทางวิทยาศาสตร์
-                    ที่ฟื้นคืนชีพขึ้นมาในโลกยุคหินหลังจากมนุษย์ทั่วโลกกลายเป็นหินนานกว่า
-                    3,700 ปี และตั้งเป้าหมายสร้างอารยธรรมขึ้นมาใหม่ด้วยพลังของวิทยาศาสตร์
-
-                </p>
-
-
-                <div class="info-box">
-
-                    <p>
-                        🧠 <b>ความสามารถ:</b>
-                        เชี่ยวชาญเคมี ฟิสิกส์ ชีววิทยา คณิตศาสตร์ และวิศวกรรม
-                    </p>
-
-                    <p>
-                        🎯 <b>เป้าหมาย:</b>
-                        ก่อตั้ง "อาณาจักรวิทยาศาสตร์"
-                        เพื่อช่วยเหลือผู้คนและคืนความเจริญให้อารยธรรมมนุษย์
-                    </p>
-
-                    <p>
-                        🧪 <b>บุคลิก:</b>
-                        มั่นใจในตัวเองสูง มีเหตุผล ฉลาดเป็นกรด
-                        และยึดมั่นในความจริงตามหลักวิทยาศาสตร์
-                    </p>
-
-                    <p>
-                        ⚠️ <b>จุดอ่อน:</b>
-                        มีพละกำลังและการต่อสู้ด้อยกว่าคนอื่นอย่างเห็นได้ชัด
-                    </p>
-
-                </div>
+                <span class="heart">
+                    ♥
+                </span>
 
             </div>
 
         </div>
 
-    </article>
 
+        <!-- =================================================
+             XENO
+        ================================================== -->
 
-    <!-- =====================================================
-         RELATIONSHIP
-    ====================================================== -->
+        <article class="card">
 
-    <div class="relationship">
+            <div class="card-inner">
 
-        <div class="relationship-line"></div>
+                <div class="card-header">
 
-        <div class="relationship-label">
+                    <span>
+                        XENO RESEARCH UNIT
+                    </span>
 
-            🧑‍🏫
-            ศิษย์อาจารย์
-            <span class="heart">♥</span>
+                    <span class="online">
 
-        </div>
+                        <i class="online-dot"></i>
 
-    </div>
+                        ONLINE
 
+                    </span>
 
-    <!-- =====================================================
-         XENO
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
-
-
-            <div class="image-frame">
-
-                <div class="corner c1"></div>
-                <div class="corner c2"></div>
-                <div class="corner c3"></div>
-                <div class="corner c4"></div>
-
-                <iframe
-                    src="xeno%20ii.pdf"
-                    title="Dr. Xeno Houston Wingfield">
-                </iframe>
-
-            </div>
-
-
-            <div class="content">
-
-                <div class="character-number">
-                    ⚛️ CHARACTER 02
                 </div>
 
 
-                <h2>
+                <div class="image-frame">
 
-                    ดร. เซโน ฮูสตัน วิงฟิลด์
+                    <div class="corner a"></div>
+                    <div class="corner b"></div>
+                    <div class="corner c"></div>
+                    <div class="corner d"></div>
 
-                    <span>
-                        Dr. Xeno Houston Wingfield
-                    </span>
+                    <!-- รูปไฟล์ที่ 2 -->
 
-                </h2>
+                    <img
+                        src="__IMAGE_2__"
+                        alt="Dr. Xeno">
+
+                    <div class="image-info">
+
+                        IMAGE FILE 02
+                        • XENO SYSTEM
+
+                    </div>
+
+                </div>
 
 
-                <p class="description">
+                <div class="content">
 
-                    <strong>
+                    <div class="number">
+
+                        ⚛️ CHARACTER 02
+
+                    </div>
+
+
+                    <h2>
+
                         ดร. เซโน ฮูสตัน วิงฟิลด์
-                        (Dr. Xeno Houston Wingfield)
-                    </strong>
-                    คืออัจฉริยะทางวิทยาศาสตร์สายดาร์ก
-                    และเป็นคู่ปรับคนสำคัญของเซ็นคูใน
-                    <strong>Dr. Stone</strong>
-                    เขาคืออดีตนักวิทยาศาสตร์มืออาชีพของ NASA
-                    และเป็นผู้นำของกลุ่มคนในฝั่งอเมริกาหลังจากตื่นขึ้นจากการเป็น
 
-                </p>
+                        <span>
+                            Dr. Xeno Houston Wingfield
+                        </span>
+
+                    </h2>
 
 
-                <div class="info-box">
+                    <p class="description">
 
-                    <p>
-                        ✨ <b>คำพูดติดปาก:</b>
-                        มักใช้คำว่า "Elegant" (สง่างาม)
-                        เพื่อชื่นชมสิ่งที่มีประสิทธิภาพและสมบูรณ์แบบ
+                        <strong>
+                            ดร. เซโน ฮูสตัน วิงฟิลด์
+                        </strong>
+
+                        คืออัจฉริยะทางวิทยาศาสตร์
+                        และคู่ปรับสำคัญของเซ็นคู
+                        ผู้มีความรู้ด้านวิทยาศาสตร์
+                        และเทคโนโลยีระดับสูง
+
                     </p>
 
-                    <p>
-                        🔬 <b>ความสามารถ:</b>
-                        เชี่ยวชาญวิทยาศาสตร์ระดับสูง
-                        โดยเฉพาะฟิสิกส์ วิศวกรรมศาสตร์ และการสร้างอาวุธสงคราม
-                    </p>
 
-                    <p>
-                        👑 <b>แนวคิดและเป้าหมาย:</b>
-                        เชื่อว่า "วิทยาศาสตร์คือพลัง"
-                        และคนฉลาดควรปกครองคนโง่
-                        เขาตั้งใจจะเป็นเผด็จการผู้ปกครองโลกยุคหิน
-                    </p>
+                    <div class="info">
 
-                    <p>
-                        🔫 <b>อาวุธในครอบครอง:</b>
-                        ต่างจากเซ็นคูที่เน้นสร้างของใช้
-                        เซโนสร้างปืนกล ไรเฟิลซุ่มยิง
-                        และเครื่องบินรบขึ้นมาครอบครอง
-                    </p>
+                        <p>
+                            ✨
+                            <b>คำพูดติดปาก:</b>
+                            “Elegant”
+                        </p>
 
-                    <p>
-                        🤝 <b>ความสัมพันธ์:</b>
-                        เป็นเพื่อนสมัยเด็กและคู่หูที่ไว้ใจที่สุดของ
-                        สแตนลีย์ สไนเดอร์ ทหารฝีมือฉกาจ
-                    </p>
+                        <p>
+                            🔬
+                            <b>ความสามารถ:</b>
+                            ฟิสิกส์ วิศวกรรม
+                            และเทคโนโลยีขั้นสูง
+                        </p>
+
+                        <p>
+                            👑
+                            <b>แนวคิด:</b>
+                            วิทยาศาสตร์คือพลัง
+                        </p>
+
+                        <p>
+                            🤝
+                            <b>ความสัมพันธ์:</b>
+                            มีความผูกพันสูงกับสแตนลีย์
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </article>
+        </article>
 
 
-    <!-- =====================================================
-         RELATIONSHIP 2
-    ====================================================== -->
+        <!-- RELATIONSHIP -->
 
-    <div class="relationship">
+        <div class="relationship">
 
-        <div class="relationship-line"></div>
+            <div class="relationship-line"></div>
 
-        <div class="relationship-label">
+            <div class="relationship-label">
 
-            🤝
-            คู่หูที่เชื่อใจที่สุด
-            <span class="heart">♥</span>
+                🤝
+                คู่หูที่เชื่อใจที่สุด
 
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         STANLEY
-    ====================================================== -->
-
-    <article class="card">
-
-        <div class="card-inner">
-
-
-            <div class="image-frame">
-
-                <div class="corner c1"></div>
-                <div class="corner c2"></div>
-                <div class="corner c3"></div>
-                <div class="corner c4"></div>
-
-                <iframe
-                    src="stanly%20ii.pdf"
-                    title="Stanley Snyder">
-                </iframe>
+                <span class="heart">
+                    ♥
+                </span>
 
             </div>
 
-
-            <div class="content">
-
-                <div class="character-number">
-                    🎯 CHARACTER 03
-                </div>
+        </div>
 
 
-                <h2>
+        <!-- =================================================
+             STANLEY
+        ================================================== -->
 
-                    สแตนลีย์ สไนเดอร์
+        <article class="card">
+
+            <div class="card-inner">
+
+                <div class="card-header">
 
                     <span>
-                        Stanley Snyder
+                        STANLEY COMBAT LAB
                     </span>
 
-                </h2>
+                    <span class="online">
+
+                        <i class="online-dot"></i>
+
+                        READY
+
+                    </span>
+
+                </div>
 
 
-                <p class="description">
+                <div class="image-frame">
 
-                    <strong>
-                        สแตนลีย์ สไนเดอร์ (Stanley Snyder)
-                    </strong>
-                    คือทหารรับจ้างฝีมือฉกาจระดับพระกาฬ
-                    และเป็น "มือขวา" ที่ซื่อสัตย์ที่สุดของ ดร. เซโน
-                    ใน <strong>Dr. Stone</strong>
-                    เขาทำหน้าที่เป็นผู้นำกองกำลังทหารของฝั่งอเมริกา
-                    และเป็นหนึ่งในตัวร้ายที่อันตรายที่สุดในเรื่อง
-                    ด้วยทักษะการรบและการใช้อาวุธที่ไร้เทียมทาน
+                    <div class="corner a"></div>
+                    <div class="corner b"></div>
+                    <div class="corner c"></div>
+                    <div class="corner d"></div>
 
-                </p>
+                    <!-- รูปไฟล์ที่ 3 -->
+
+                    <img
+                        src="__IMAGE_3__"
+                        alt="Stanley Snyder">
+
+                    <div class="image-info">
+
+                        IMAGE FILE 03
+                        • PRECISION UNIT
+
+                    </div>
+
+                </div>
 
 
-                <div class="info-box">
+                <div class="content">
 
-                    <p>
-                        🚬 <b>เอกลักษณ์:</b>
-                        มักจะคาบบุหรี่อยู่ในปากตลอดเวลา
-                        (แม้ในโลกยุคหินเซโน่ก็สร้างยาสูบขึ้นให้)
-                        และมีรูปร่างหน้าตาสะสวยจนบางครั้งคนเข้าใจผิดว่าเป็นผู้หญิง
+                    <div class="number">
+
+                        🎯 CHARACTER 03
+
+                    </div>
+
+
+                    <h2>
+
+                        สแตนลีย์ สไนเดอร์
+
+                        <span>
+                            Stanley Snyder
+                        </span>
+
+                    </h2>
+
+
+                    <p class="description">
+
+                        <strong>
+                            สแตนลีย์ สไนเดอร์
+                        </strong>
+
+                        เป็นผู้เชี่ยวชาญด้านการรบ
+                        และกำลังสำคัญของฝ่ายเซโน
+                        มีความสามารถด้านการยิง
+                        การวางแผน และภารกิจทางทหาร
+
                     </p>
 
-                    <p>
-                        🎯 <b>ทักษะการต่อสู้:</b>
-                        เป็นนักแม่นปืนขั้นเทพ
-                        สามารถยิงเป้าหมายระยะไกลได้อย่างแม่นยำ
-                        และเชี่ยวชาญการขับเครื่องบินรบ
-                    </p>
 
-                    <p>
-                        🥶 <b>บุคลิก:</b>
-                        เงียบขรึม เลือดเย็น มีไหวพริบ
-                        และสัญชาตญาณการต่อสู้ที่เฉียบคมมาก
-                    </p>
+                    <div class="info">
 
-                    <p>
-                        ❤️ <b>ความสัมพันธ์:</b>
-                        เซโน่กับสแตนลีย์เป็นเพื่อนสนิทกันมาตั้งแต่เด็ก
-                        ก่อนโลกจะกลายเป็นหิน
-                        เขาสัญญาว่าจะปกป้องและทำตามเป้าหมายของเซโนให้เป็นจริง
-                        ไม่ว่าเซโนจะเลือกทางไหนก็ตาม
-                    </p>
+                        <p>
+                            🎯
+                            <b>ทักษะ:</b>
+                            แม่นปืนและการวางแผน
+                        </p>
+
+                        <p>
+                            🥶
+                            <b>บุคลิก:</b>
+                            สุขุม เงียบขรึม
+                        </p>
+
+                        <p>
+                            ✈️
+                            <b>ความสามารถ:</b>
+                            การบินและยุทธวิธี
+                        </p>
+
+                        <p>
+                            ❤️
+                            <b>ความสัมพันธ์:</b>
+                            เพื่อนสนิทและผู้ช่วยของเซโน
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </article>
 
-    </article>
+    </div>
 
 </section>
 
@@ -2054,9 +2276,11 @@ footer p{
 
 <div class="core">
 
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
+    <div class="core-ring r1"></div>
+    <div class="core-ring r2"></div>
+    <div class="core-ring r3"></div>
+
+    <div class="core-center"></div>
 
 </div>
 
@@ -2067,7 +2291,7 @@ footer p{
 
 <footer>
 
-    <div class="logo">
+    <div class="icons">
         🧪 ⚛️ 🧬 🔬
     </div>
 
@@ -2088,7 +2312,6 @@ footer p{
 
 <!-- =========================================================
      JAVASCRIPT
-     เอฟเฟกต์ตอนเลื่อน + Particle เพิ่มเติม
 ========================================================= -->
 
 <script>
@@ -2098,61 +2321,141 @@ footer p{
 ========================================================= */
 
 const cards =
-    document.querySelectorAll(".card");
+    document.querySelectorAll(
+        ".card"
+    );
 
 const observer =
     new IntersectionObserver(
         entries => {
 
-            entries.forEach(entry => {
+            entries.forEach(
+                entry => {
 
-                if(entry.isIntersecting){
+                    if(
+                        entry.isIntersecting
+                    ){
 
-                    entry.target.style.opacity = "1";
+                        entry.target.style.opacity =
+                            "1";
 
-                    entry.target.style.filter =
-                        "blur(0px)";
+                        entry.target.style.filter =
+                            "blur(0px)";
 
-                    entry.target.style.transform =
-                        "translateY(0)";
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+                    }
 
                 }
-
-            });
+            );
 
         },
         {
-            threshold:.15
+            threshold:.12
         }
     );
 
 
-cards.forEach(card => {
+cards.forEach(
+    card => {
 
-    card.style.opacity = "0";
+        card.style.opacity =
+            "0";
 
-    card.style.filter =
-        "blur(8px)";
+        card.style.filter =
+            "blur(8px)";
 
-    card.style.transform =
-        "translateY(60px)";
+        card.style.transform =
+            "translateY(60px)";
 
-    card.style.transition =
-        "opacity 1s ease, filter 1s ease, transform 1s ease";
+        card.style.transition =
+            "opacity 1s ease, filter 1s ease, transform 1s ease";
 
-    observer.observe(card);
+        observer.observe(
+            card
+        );
 
-});
+    }
+);
 
 
 /* =========================================================
-   CREATE EXTRA PARTICLES
+   CARD 3D TILT
 ========================================================= */
 
-for(let i = 0; i < 35; i++){
+cards.forEach(
+    card => {
+
+        card.addEventListener(
+            "mousemove",
+            event => {
+
+                if(
+                    window.innerWidth < 900
+                ){
+                    return;
+                }
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                const rotateY =
+                    ((x / rect.width) - .5)
+                    * 5;
+
+                const rotateX =
+                    ((y / rect.height) - .5)
+                    * -5;
+
+                card.style.transform =
+                    `
+                    translateY(-18px)
+                    scale(1.02)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    `;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                card.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   EXTRA PARTICLES
+========================================================= */
+
+for(
+    let i = 0;
+    i < 40;
+    i++
+){
 
     const particle =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     particle.className =
         "particle";
@@ -2161,101 +2464,22 @@ for(let i = 0; i < 35; i++){
         Math.random() * 100 + "%";
 
     particle.style.animationDuration =
-        (7 + Math.random() * 12) + "s";
+        (
+            7 +
+            Math.random() * 12
+        ) + "s";
 
     particle.style.animationDelay =
-        (Math.random() * 10) + "s";
+        (
+            Math.random() * 10
+        ) + "s";
 
-    particle.style.width =
-        (2 + Math.random() * 4) + "px";
-
-    particle.style.height =
-        particle.style.width;
-
-    document.body.appendChild(particle);
-
+    document.body.appendChild(
+        particle
+    );
 }
-
-
-/* =========================================================
-   MOUSE LIGHT EFFECT
-========================================================= */
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        const x =
-            event.clientX / window.innerWidth;
-
-        const y =
-            event.clientY / window.innerHeight;
-
-        document.documentElement.style.setProperty(
-            "--mouse-x",
-            x
-        );
-
-        document.documentElement.style.setProperty(
-            "--mouse-y",
-            y
-        );
-
-    }
-);
-
-
-/* =========================================================
-   CARD TILT
-========================================================= */
-
-document
-.querySelectorAll(".card")
-.forEach(card => {
-
-    card.addEventListener(
-        "mousemove",
-        e => {
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const x =
-                e.clientX - rect.left;
-
-            const y =
-                e.clientY - rect.top;
-
-            const rotateY =
-                ((x / rect.width) - .5) * 5;
-
-            const rotateX =
-                ((y / rect.height) - .5) * -5;
-
-            card.style.transform =
-                `translateY(-18px)
-                 scale(1.02)
-                 rotateX(${rotateX}deg)
-                 rotateY(${rotateY}deg)`;
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform =
-                "";
-
-        }
-    );
-
-});
-
 
 </script>
 
 </body>
-  </html>
+   </html>
