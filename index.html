@@ -429,18 +429,30 @@ header p{
 
 
 /* =========================================================
-   MAIN
+   MAIN — DESKTOP CENTER
 ========================================================= */
 
 .gallery{
-    width:min(1500px,94%);
-    margin:auto;
+    width:min(1500px,96%);
+    margin:0 auto;
 
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:32px;
+
+    /*
+       Desktop:
+       CARD | RELATIONSHIP | CARD | RELATIONSHIP | CARD
+    */
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(90px,150px)
+        minmax(0,1fr)
+        minmax(90px,150px)
+        minmax(0,1fr);
+
+    gap:18px;
 
     align-items:start;
+    justify-content:center;
 }
 
 
@@ -450,6 +462,9 @@ header p{
 
 .card{
     position:relative;
+
+    width:100%;
+    min-width:0;
 
     border-radius:28px;
     padding:2px;
@@ -859,14 +874,16 @@ header p{
 .relationship{
     position:relative;
 
-    grid-column:1 / -1;
+    grid-column:auto;
 
     display:flex;
 
     justify-content:center;
     align-items:center;
 
-    margin:-5px 0;
+    min-width:0;
+
+    margin:0;
 
     z-index:5;
 }
@@ -874,7 +891,7 @@ header p{
 .relationship-line{
     position:absolute;
 
-    width:75%;
+    width:100%;
     height:2px;
 
     background:
@@ -1054,8 +1071,9 @@ footer .copyright{
 
     .gallery{
         grid-template-columns:1fr;
-
-        max-width:760px;
+        width:min(760px,94%);
+        margin-left:auto;
+        margin-right:auto;
     }
 
     .relationship{
@@ -1164,7 +1182,6 @@ footer .copyright{
 
 <body>
 
-
 <!-- =========================================================
      SCIENCE DECORATION
 ========================================================= -->
@@ -1188,7 +1205,6 @@ footer .copyright{
 
 <div class="atom atom1"></div>
 <div class="atom atom2"></div>
-
 
 <!-- =========================================================
      GLOW ORBS
@@ -1374,7 +1390,7 @@ footer .copyright{
                 <strong>ดร. เซโน ฮูสตัน วิงฟิลด์ (Dr. Xeno Houston Wingfield)</strong>
                 คืออัจฉริยะทางวิทยาศาสตร์สายดาร์ก และเป็นคู่ปรับคนสำคัญของเซ็นคูใน
                 <strong>Dr. Stone</strong>
-                เขาคืออดีตนักวิทยาศาสตร์มืออาชีพของ NASA และเป็นผู้นำของกลุ่มคนในฝั่งอเมริกาหลังจากตื่นขึ้นจากการเป็น
+                เขาคืออดีตนักวิทยาศาสตร์มืออาชีพของ NASA และเป็นผู้นำของกลุ่มคนในฝั่งอเมริกาหลังจากตื่นขึ้นจากการเป็นหิน
 
             </p>
 
@@ -1559,4 +1575,4 @@ footer .copyright{
 
 
 </body>
-    </html>
+</html>
